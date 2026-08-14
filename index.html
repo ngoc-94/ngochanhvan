@@ -111,12 +111,46 @@ p:last-child{margin-bottom:0}
 .hero::before{content:"";position:absolute;width:720px;height:720px;right:-220px;top:-260px;border-radius:50%;background:radial-gradient(circle,rgba(231,197,116,.16) 0%,rgba(231,197,116,0) 68%);pointer-events:none;animation:drift 18s ease-in-out infinite alternate}
 @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-46px,40px,0)}}
 .hero-in{position:relative;max-width:1120px;margin:0 auto;padding:0 28px}
-.kicker{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-lt);margin:0 0 26px;font-weight:500}
-h1{font-size:clamp(2.05rem,4.5vw,3.15rem);line-height:1.12;max-width:19ch;color:#fff}
-.qs{list-style:none;margin:30px 0 0;padding:0 0 0 26px;border-left:2px solid var(--gold-lt);max-width:40ch}
-.qs li{font-family:var(--display);font-style:italic;font-size:clamp(1.1rem,2.2vw,1.4rem);line-height:1.5;color:rgba(255,255,255,.92);margin-bottom:10px}
-.qs li:last-child{margin-bottom:0}
-.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.question-label{
+  margin:0 0 16px;
+  font-family:var(--body);
+  font-size:13.5px;
+  line-height:1.5;
+  font-weight:400;
+  letter-spacing:.04em;
+  color:var(--gold-lt);
+}
+
+.qs{
+  list-style:none;
+  margin:0;
+  padding:0;
+  max-width:56ch;
+}
+
+.qs li{
+  position:relative;
+  padding-left:18px;
+  margin-bottom:9px;
+  font-family:var(--body);
+  font-size:15.5px;
+  line-height:1.65;
+  font-style:normal;
+  font-weight:300;
+  letter-spacing:0;
+  color:rgba(255,255,255,.88);
+}
+
+.qs li::before{
+  content:"–";
+  position:absolute;
+  left:0;
+  color:var(--gold-lt);
+}
+
+.qs li:last-child{
+  margin-bottom:0;
+}
 
 /* proof bar */
 .proofbar{margin-top:44px;border-top:1px solid var(--line-w);border-bottom:1px solid var(--line-w);display:grid;grid-template-columns:repeat(4,1fr)}
@@ -334,17 +368,14 @@ footer{background:var(--navy-deep);color:#fff;padding:44px 0 44px;text-align:cen
 <!-- ================= HERO ================= -->
 <header class="navy hero">
   <div class="hero-in">
-    <p class="kicker rv">Chị Hạnh Global · Career Strategist · Book Author</p>
-    <h1 class="rv">Người im lặng trả phí cho người lên tiếng</h1>
+    <p class="question-label rv">Điều bạn đang tự hỏi</p>
+
     <ul class="qs rv">
       <li>Tôi không biết mình còn giá trị gì trong 2 năm nữa?</li>
-      <li>Cái tôi giỏi liệu có còn được cần không?</li>
-      <li>Tôi nên đi hướng nào khi cả thị trường lao động đang thay đổi quá nhiều?</li>
+      <li>Tôi nên đi hướng nào khi thị trường lao động hiện nay đang thay đổi quá nhiều?</li>
+      <li>Điều tôi đang giỏi liệu người ta có còn cần nữa không?</li>
     </ul>
-    <div class="hero-cta rv">
-      <a class="btn goldlt lg" href="https://forms.gle/CxEjUvd61AjkAUEKA"><span>Nhận bản STAR Read</span></a>
-      <a class="btn light lg" href="https://tinyurl.com/coachingchihanhglobal"><span>Coaching Premium 1:1</span></a>
-    </div>
+
     <div class="proofbar stag">
       <div><b>1,2 triệu</b><span>lượt xem cho một bài viết về cơ chế lương</span></div>
       <div><b>13 năm</b><span>làm Global: Vietnam Airlines, Meta &amp; Apple Ecosystem</span></div>
