@@ -93,8 +93,11 @@ p:last-child{margin-bottom:0}
 .btn.sm{padding:9px 18px;font-size:12px}
 .btn.lg{padding:19px 40px;font-size:15px;letter-spacing:.05em}
 
+/* ---------- khối xuất bản mở đầu ---------- */
+.opener{padding:96px 0 74px}
+
 /* ---------- hero ---------- */
-.hero{padding:104px 0 0}
+.hero{padding:78px 0 76px}
 .hero::before{content:"";position:absolute;width:720px;height:720px;right:-220px;top:-260px;border-radius:50%;background:radial-gradient(circle,rgba(231,197,116,.16) 0%,rgba(231,197,116,0) 68%);pointer-events:none;animation:drift 18s ease-in-out infinite alternate}
 @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-46px,40px,0)}}
 .hero-in{position:relative;max-width:1120px;margin:0 auto;padding:0 28px}
@@ -113,7 +116,7 @@ h1{font-size:clamp(2.05rem,4.5vw,3.15rem);line-height:1.12;max-width:19ch;color:
 .proofbar span{display:block;margin-top:7px;font-size:12.5px;line-height:1.5;color:rgba(255,255,255,.78)}
 
 /* ---------- marquee ---------- */
-.ribbon{background:var(--navy);padding:26px 0 34px;overflow:hidden;position:relative}
+.ribbon{background:var(--navy);padding:34px 0 38px;overflow:hidden;position:relative}
 .ribbon::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,var(--navy) 0%,rgba(18,58,95,0) 7%,rgba(18,58,95,0) 93%,var(--navy) 100%)}
 .track{display:flex;gap:18px;width:max-content;animation:slide 42s linear infinite}
 .ribbon:hover .track{animation-play-state:paused}
@@ -162,6 +165,7 @@ h1{font-size:clamp(2.05rem,4.5vw,3.15rem);line-height:1.12;max-width:19ch;color:
 /* ---------- portrait / chân dung ---------- */
 .bio{display:grid;grid-template-columns:340px 1fr;gap:56px;align-items:start}
 .portrait{position:relative;overflow:hidden;border:1px solid var(--line)}
+.navy .portrait{border-color:rgba(255,255,255,.24)}
 .portrait img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 20%;transform:scale(1.05);animation:kb 20s ease-in-out infinite alternate}
 @keyframes kb{from{transform:scale(1.05)}to{transform:scale(1.13)}}
 .pull{margin:28px 0 0;padding:26px 30px;background:var(--wash);border-left:3px solid var(--gold)}
@@ -261,7 +265,8 @@ footer{background:var(--navy-deep);color:#fff;padding:44px 0 44px;text-align:cen
 }
 @media (max-width:640px){
   section{padding:50px 0}
-  .hero{padding:84px 0 0}
+  .opener{padding:76px 0 54px}
+  .hero{padding:56px 0 56px}
   .bio{grid-template-columns:1fr;gap:26px}
   .portrait{max-width:300px}
   .facts{grid-template-columns:1fr}
@@ -294,6 +299,29 @@ footer{background:var(--navy-deep);color:#fff;padding:44px 0 44px;text-align:cen
   </div>
 </nav>
 
+<!-- ================= XUẤT BẢN · ĐẦU TRANG ================= -->
+<section class="white opener">
+  <div class="wrap">
+    <p class="eyebrow rv" data-n="01">Xuất bản</p>
+    <div class="book">
+      <div class="book-cover rv"><img decoding="async" src="bia-sach.webp" alt="Bìa sách Người im lặng trả phí cho người lên tiếng"></div>
+      <div class="rv">
+        <h2>Người im lặng trả phí cho người lên tiếng</h2>
+        <p class="mute" style="margin-top:4px">NXB Phụ nữ ấn hành</p>
+        <p>Chia sẻ kiến thức chuyên sâu qua <span class="hl">những câu chuyện có thật trong tập đoàn, từ chính sai lầm của mình</span>, và góc nhìn đa chiều để bảo vệ người Việt trước những hiểu nhầm khiến họ mất giá và bị sai giá trị.</p>
+        <div class="pull">
+          <p>Khung STAR System Read gồm bốn bước System, Translation, Authority và Repositioning là phương pháp do chị xây dựng để người Việt tự chẩn đoán và bảo vệ mình trong hệ thống quốc tế.</p>
+        </div>
+        <div class="meta">
+          <span>Bản thảo đã gửi thẩm định</span>
+          <span>Dự kiến phát hành tháng 8-9/2026</span>
+          <span>Có mặt trên Amazon KDP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= HERO ================= -->
 <header class="navy hero">
   <div class="hero-in">
@@ -312,61 +340,32 @@ footer{background:var(--navy-deep);color:#fff;padding:44px 0 44px;text-align:cen
       <div><b>1,2 triệu</b><span>lượt xem cho một bài viết về cơ chế lương</span></div>
       <div><b>13 năm</b><span>làm Global: Vietnam Airlines, Meta &amp; Apple Ecosystem</span></div>
       <div><b>6 năm</b><span>Top performer liên tục theo chuẩn quốc tế</span></div>
-      <!-- SUA-1: TRANG THAI SACH (dai so lieu dau trang) -->
       <div><b>Sách</b><span>NXB Phụ nữ ấn hành, phát hành 8-9/2026</span></div>
-    </div>
-  </div>
-  <div class="ribbon" style="margin-top:34px">
-    <div class="track" id="track">
-      <figure><img loading="lazy" decoding="async" src="dai-1-luot-xem.webp" alt="Bài viết 1,2 triệu lượt xem"></figure>
-      <figure><img loading="lazy" decoding="async" src="dai-2-kttc.webp" alt="Kiến Thức Tài Chính"></figure>
-      <figure><img loading="lazy" decoding="async" src="dai-3-sach.webp" alt="Bìa sách"></figure>
-      <figure><img loading="lazy" decoding="async" src="dai-4-menara.webp" alt="Menara Shell Kuala Lumpur"></figure>
-      <figure><img loading="lazy" decoding="async" src="dai-5-vna.webp" alt="Vietnam Airlines"></figure>
-      <figure><img loading="lazy" decoding="async" src="dai-6-quoc-te.webp" alt="Môi trường đa quốc gia"></figure>
-      <figure><img loading="lazy" decoding="async" src="dai-7-cheers.webp" alt="Cheers Award"></figure>
     </div>
   </div>
 </header>
 
-<!-- ================= SOCIAL PROOF ================= -->
+<!-- ================= CHÂN DUNG ================= -->
 <section class="white">
   <div class="wrap">
-    <p class="eyebrow rv" data-n="01">Thị trường</p>
-    <h2 class="rv">Thị trường đánh giá gì về góc nhìn trong hệ thống của Hạnh?</h2>
-    <p class="rv mute">Góc nhìn của Hạnh được kênh Kiến Thức Tài Chính phát hành thành video, và một bài viết chạm <span class="hl">1,2 triệu lượt xem</span>.</p>
-    <div class="figs c2 stag" style="margin-top:24px">
-      <figure class="fig doc"><img loading="lazy" decoding="async" src="kien-thuc-tai-chinh.webp" alt="Góc nhìn của Hạnh trên kênh Kiến Thức Tài Chính"><figcaption>Kiến Thức Tài Chính · phát hành thành video</figcaption></figure>
-      <figure class="fig doc"><img loading="lazy" decoding="async" src="1-2-trieu-luot-xem.webp" alt="Bài viết đạt 1,2 triệu lượt xem"><figcaption>1,2 triệu lượt xem · 161,6K lượt tương tác</figcaption></figure>
-    </div>
-  </div>
-</section>
-
-<!-- ================= SÁCH ================= -->
-<section class="navy">
-  <div class="wrap">
-    <p class="eyebrow rv" data-n="02">Xuất bản</p>
-    <div class="book">
-      <div class="book-cover rv"><img loading="lazy" decoding="async" src="bia-sach.webp" alt="Bìa sách Người im lặng trả phí cho người lên tiếng"></div>
+    <p class="eyebrow rv" data-n="02">Chân dung</p>
+    <div class="bio">
+      <div class="portrait rv"><img loading="lazy" decoding="async" src="chan-dung.webp" alt="Văn Thị Ngọc Hạnh"></div>
       <div class="rv">
-        <h2>Người im lặng trả phí cho người lên tiếng</h2>
-        <p class="mute" style="margin-top:4px">NXB Phụ nữ ấn hành</p>
-        <p>Chia sẻ kiến thức chuyên sâu qua <span class="hl">những câu chuyện có thật trong tập đoàn, từ chính sai lầm của mình</span>, và góc nhìn đa chiều để bảo vệ người Việt trước những hiểu nhầm khiến họ mất giá và bị sai giá trị.</p>
+        <h2>Văn Thị Ngọc Hạnh (Chị Hạnh Global) là ai?</h2>
+        <p>Hạnh mất nhiều năm để tin rằng cứ giỏi là sẽ được ghi nhận. Hạnh đã sai, và cái sai đó <span class="hl">không chỉ trả bằng tiền</span> mà còn là niềm tin và giá trị của bản thân khi bị đọc sai trong hệ thống quốc tế.</p>
+        <p>Vì thế, Hạnh chia sẻ cách để người Việt được đọc đúng, định giá đúng và bảo vệ bản thân mình trong hệ thống quốc tế. Và Hạnh chia sẻ không phải từ góc diễn giả trên cao. <span class="hl">Hạnh đã từng sống trong nó</span>, hiểu được cơ chế luật ngầm giữ người giỏi, và nói cho bạn nghe sự thật bên trong hệ thống quốc tế nơi các tập đoàn đa quốc gia đang vận hành.</p>
         <div class="pull">
-          <p>Khung STAR System Read gồm bốn bước System, Translation, Authority và Repositioning là phương pháp do chị xây dựng để người Việt tự chẩn đoán và bảo vệ mình trong hệ thống quốc tế.</p>
-        </div>
-        <!-- SUA-2: TRANG THAI SACH (khoi sach) -->
-        <div class="meta">
-          <span>Bản thảo đã gửi thẩm định</span>
-          <span>Dự kiến phát hành tháng 8-9/2026</span>
-          <span>Có mặt trên Amazon KDP</span>
+          <p>Năng lực không tự lên tiếng. Bạn phải lên tiếng cho năng lực của mình trong một hệ thống đang từng ngày biến động.</p>
+          <p>Người im lặng trả phí cho người lên tiếng.</p>
+          <p>Hạnh mong bạn đừng để hệ thống định sai giá trị của bạn, như Hạnh đã từng.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= TÀI LIỆU + STAR ================= -->
+<!-- ================= HẠNH GỬI TẶNG BẠN ================= -->
 <section class="white">
   <div class="wrap">
     <p class="eyebrow rv" data-n="03">Hạnh gửi tặng bạn</p>
@@ -396,30 +395,10 @@ footer{background:var(--navy-deep);color:#fff;padding:44px 0 44px;text-align:cen
   </div>
 </section>
 
-<!-- ================= CHÂN DUNG ================= -->
+<!-- ================= BẰNG CHỨNG TỪ HỆ THỐNG ================= -->
 <section class="white">
   <div class="wrap">
-    <p class="eyebrow rv" data-n="04">Chân dung</p>
-    <div class="bio">
-      <div class="portrait rv"><img loading="lazy" decoding="async" src="chan-dung.webp" alt="Văn Thị Ngọc Hạnh"></div>
-      <div class="rv">
-        <h2>Văn Thị Ngọc Hạnh (Chị Hạnh Global) là ai?</h2>
-        <p>Hạnh mất nhiều năm để tin rằng cứ giỏi là sẽ được ghi nhận. Hạnh đã sai, và cái sai đó <span class="hl">không chỉ trả bằng tiền</span> mà còn là niềm tin và giá trị của bản thân khi bị đọc sai trong hệ thống quốc tế.</p>
-        <p>Vì thế, Hạnh chia sẻ cách để người Việt được đọc đúng, định giá đúng và bảo vệ bản thân mình trong hệ thống quốc tế. Và Hạnh chia sẻ không phải từ góc diễn giả trên cao. <span class="hl">Hạnh đã từng sống trong nó</span>, hiểu được cơ chế luật ngầm giữ người giỏi, và nói cho bạn nghe sự thật bên trong hệ thống quốc tế nơi các tập đoàn đa quốc gia đang vận hành.</p>
-        <div class="pull">
-          <p>Năng lực không tự lên tiếng. Bạn phải lên tiếng cho năng lực của mình trong một hệ thống đang từng ngày biến động.</p>
-          <p>Người im lặng trả phí cho người lên tiếng.</p>
-          <p>Hạnh mong bạn đừng để hệ thống định sai giá trị của bạn, như Hạnh đã từng.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= BẰNG CHỨNG HỆ THỐNG ================= -->
-<section class="navy">
-  <div class="wrap">
-    <p class="eyebrow rv" data-n="05">Bằng chứng từ hệ thống</p>
+    <p class="eyebrow rv" data-n="04">Bằng chứng từ hệ thống</p>
     <h2 class="rv">Môi trường quốc tế xác nhận gì về năng lực chuyên môn của Hạnh?</h2>
 
     <div class="row rv" style="margin-top:26px">
@@ -465,25 +444,42 @@ footer{background:var(--navy-deep);color:#fff;padding:44px 0 44px;text-align:cen
       </div>
     </div>
 
-      </div>
+  </div>
+</section>
+
+<!-- ================= QUỐC TẾ ================= -->
+<section class="navy">
+  <div class="wrap">
+    <p class="eyebrow rv" data-n="05">Quốc tế</p>
+    <h2 class="rv">Đồng nghiệp quốc tế nghĩ gì về cách làm việc của Hạnh?</h2>
+    <p class="rv mute">Lời chứng thực chính thức từ cấp cao trong hệ thống đánh giá nội bộ.</p>
+    <div class="figs c2 stag" style="margin-top:24px">
+      <figure class="fig doc"><img loading="lazy" decoding="async" src="danh-gia-noi-bo.webp" alt="Lời chứng thực từ cấp cao"><figcaption class="quote-cap"><em>Van has consistently demonstrated a positive attitude, strong work ethic, and reliability..</em></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THỊ TRƯỜNG ================= -->
+<section class="white">
+  <div class="wrap">
+    <p class="eyebrow rv" data-n="06">Thị trường</p>
+    <h2 class="rv">Thị trường đánh giá gì về góc nhìn trong hệ thống của Hạnh?</h2>
+    <p class="rv mute">Góc nhìn của Hạnh được kênh Kiến Thức Tài Chính phát hành thành video, và một bài viết chạm <span class="hl">1,2 triệu lượt xem</span>.</p>
+    <div class="figs c2 stag" style="margin-top:24px">
+      <figure class="fig doc"><img loading="lazy" decoding="async" src="kien-thuc-tai-chinh.webp" alt="Góc nhìn của Hạnh trên kênh Kiến Thức Tài Chính"><figcaption>Kiến Thức Tài Chính · phát hành thành video</figcaption></figure>
+      <figure class="fig doc"><img loading="lazy" decoding="async" src="1-2-trieu-luot-xem.webp" alt="Bài viết đạt 1,2 triệu lượt xem"><figcaption>1,2 triệu lượt xem · 161,6K lượt tương tác</figcaption></figure>
+    </div>
+  </div>
 </section>
 
 <!-- ================= CẢM NHẬN ================= -->
-<section class="white">
+<section class="navy">
   <div class="wrap">
-    <p class="eyebrow rv" data-n="06">Cảm nhận</p>
+    <p class="eyebrow rv" data-n="07">Cảm nhận</p>
     <h2 class="rv">Người khác cảm nhận gì về Hạnh?</h2>
     <div class="figs c2 stag" style="margin-top:22px">
       <figure class="fig"><img loading="lazy" decoding="async" src="cam-nhan-manager.webp" alt="Một Manager tại Fortune 500 chia sẻ" style="height:auto;object-fit:contain"><figcaption>Một Manager tại Fortune 500 chia sẻ</figcaption></figure>
       <figure class="fig"><img loading="lazy" decoding="async" src="cam-nhan-senior-strategist.webp" alt="Một Senior Strategist chia sẻ" style="height:auto;object-fit:contain"><figcaption>Một Senior Strategist chia sẻ</figcaption></figure>
-         </div>
-    <div class="row rv" style="margin-top:34px">
-      <div class="row-label">Quốc tế</div>
-      <div>
-        <h3>Đồng nghiệp quốc tế nghĩ gì về cách làm việc của Hạnh?</h3>
-        <p class="mute">Lời chứng thực chính thức từ cấp cao trong hệ thống đánh giá nội bộ.</p>
-        <figure class="fig doc"><img loading="lazy" decoding="async" src="danh-gia-noi-bo.webp" alt="Lời chứng thực từ cấp cao"><figcaption class="quote-cap"><em>Van has consistently demonstrated a positive attitude, strong work ethic, and reliability..</em></figcaption></figure>
-      </div>
     </div>
   </div>
 </section>
@@ -494,7 +490,7 @@ footer{background:var(--navy-deep);color:#fff;padding:44px 0 44px;text-align:cen
 
 <section class="white">
   <div class="wrap">
-    <p class="eyebrow rv" data-n="07">Báo chí</p>
+    <p class="eyebrow rv" data-n="08">Báo chí</p>
     <h2 class="rv">Các trang báo uy tín nói gì về góc nhìn của Hạnh?</h2>
     <div class="figs c2 stag" style="margin-top:24px">
       <figure class="fig doc"><img src="" alt=""><figcaption>Tên báo</figcaption></figure>
@@ -504,7 +500,7 @@ footer{background:var(--navy-deep);color:#fff;padding:44px 0 44px;text-align:cen
 </section>
 -->
 
-<!-- ================= CTA PANEL ================= -->
+<!-- ================= LÀM VIỆC CÙNG HẠNH ================= -->
 <section class="cta-sec" id="coaching">
   <div class="panel">
     <p class="eyebrow rv" data-n="—">Làm việc cùng Hạnh</p>
@@ -512,11 +508,23 @@ footer{background:var(--navy-deep);color:#fff;padding:44px 0 44px;text-align:cen
     <p class="sell rv">Chương trình huấn luyện và chiến lược cá nhân hóa giúp những cá nhân xuất sắc nhận được mức đãi ngộ xứng tầm.</p>
     <div class="panel-actions rv">
       <a class="btn goldlt lg" href="https://tinyurl.com/coachingchihanhglobal"><span>Xem lộ trình chi tiết Coaching</span></a>
-      <!-- SUA-4: SO DIEN THOAI TRO LY -->
       <p class="assist">Trợ lý Hạnh: <b><a href="tel:0352345160">0352 345 160</a></b></p>
     </div>
   </div>
 </section>
+
+<!-- ================= DẢI ẢNH CHẠY · CUỐI TRANG ================= -->
+<div class="ribbon">
+  <div class="track" id="track">
+    <figure><img loading="lazy" decoding="async" src="dai-1-luot-xem.webp" alt="Bài viết 1,2 triệu lượt xem"></figure>
+    <figure><img loading="lazy" decoding="async" src="dai-2-kttc.webp" alt="Kiến Thức Tài Chính"></figure>
+    <figure><img loading="lazy" decoding="async" src="dai-3-sach.webp" alt="Bìa sách"></figure>
+    <figure><img loading="lazy" decoding="async" src="dai-4-menara.webp" alt="Menara Shell Kuala Lumpur"></figure>
+    <figure><img loading="lazy" decoding="async" src="dai-5-vna.webp" alt="Vietnam Airlines"></figure>
+    <figure><img loading="lazy" decoding="async" src="dai-6-quoc-te.webp" alt="Môi trường đa quốc gia"></figure>
+    <figure><img loading="lazy" decoding="async" src="dai-7-cheers.webp" alt="Cheers Award"></figure>
+  </div>
+</div>
 
 <!-- ================= ID CARD ================= -->
 <section class="idcard">
@@ -536,7 +544,7 @@ footer{background:var(--navy-deep);color:#fff;padding:44px 0 44px;text-align:cen
     <div class="idbook rv">
       <img loading="lazy" decoding="async" src="bia-sach.webp" alt="Bìa sách Người im lặng trả phí cho người lên tiếng">
       <b>Người im lặng trả phí cho người lên tiếng</b>
-      <!-- SUA-3: TRANG THAI SACH (cuoi trang) --><span>NXB Phụ nữ ấn hành · Dự kiến phát hành tháng 8-9/2026</span>
+      <span>NXB Phụ nữ ấn hành · Dự kiến phát hành tháng 8-9/2026</span>
     </div>
   </div>
 </section>
@@ -582,7 +590,7 @@ footer{background:var(--navy-deep);color:#fff;padding:44px 0 44px;text-align:cen
 
   var nav = document.getElementById('nav');
   window.addEventListener('scroll', function(){
-    nav.classList.toggle('show', window.scrollY > 620);
+    nav.classList.toggle('show', window.scrollY > 420);
   }, {passive:true});
 })();
 </script>
