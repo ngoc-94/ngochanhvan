@@ -206,6 +206,37 @@ p:last-child{margin-bottom:0}
 .star b{display:block;font-family:var(--display);font-size:2.5rem;font-weight:400;color:var(--gold-lt);line-height:1}
 .star span{display:block;margin-top:10px;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#fff;font-weight:500}
 
+/* ---------- Bản đồ cơ chế + STAR Career Read ---------- */
+.career-map{background:var(--navy-deep);color:#fff}
+.career-map h2{color:#fff}
+.career-map .map-lead{color:rgba(255,255,255,.8);font-size:17px}
+.mechanism-shell{margin-top:36px;background:#0b2238;border:1px solid rgba(255,255,255,.18);padding:30px;overflow:hidden}
+.mech-title{text-align:center;margin-bottom:24px;font-size:12px;font-weight:600;letter-spacing:.12em;color:#fff}
+.mech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+.mech-col{display:flex;flex-direction:column;gap:13px;align-items:center}
+.mech-node{width:100%;min-height:112px;padding:18px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.055);color:#fff}
+.mech-node.active{border-color:var(--gold-lt)}
+.mech-node .node-label{display:block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:rgba(255,255,255,.58)}
+.mech-node.active .node-label{color:var(--gold-lt)}
+.mech-node b{display:block;margin-top:8px;font-size:15.5px;line-height:1.55;font-weight:400}
+.map-arrow{font-family:var(--display);font-size:27px;color:rgba(255,255,255,.45);line-height:1}
+.converge{display:grid;justify-items:center;margin-top:20px}
+.outcome,.loop{min-width:280px;text-align:center;padding:16px 20px;font-size:15px;font-weight:600;letter-spacing:.04em;color:#fff}
+.outcome{border:1px solid var(--gold-lt);background:rgba(168,124,34,.18)}
+.loop{margin-top:12px;border:1px solid rgba(255,255,255,.38);background:rgba(255,255,255,.07)}
+.loopline{text-align:center;color:rgba(255,255,255,.68);margin-top:12px;font-size:13.5px}
+.map-actions{margin-top:26px;text-align:center}
+.career-read{background:var(--wash)}
+.career-read-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
+.career-card{background:#fff;border:1px solid var(--line);padding:25px 22px;min-height:305px}
+.career-letter{font-family:var(--display);font-size:42px;line-height:1;color:var(--gold);margin-bottom:14px}
+.career-card h3{font-family:var(--body);font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.career-card p{font-size:14px;line-height:1.65;color:var(--ink-soft)}
+.career-card p strong{color:var(--ink);font-weight:500}
+.career-rule{height:1px;background:var(--line);margin:20px 0}
+.career-read-cta{text-align:center;margin-top:30px}
+.career-read-note{margin:10px auto 0;font-size:13px;color:var(--mute)}
+
 /* ---------- portrait / chân dung ---------- */
 .bio{display:grid;grid-template-columns:340px 1fr;gap:56px;align-items:start}
 .portrait{position:relative;overflow:hidden;border:1px solid var(--line)}
@@ -305,6 +336,7 @@ footer{background:var(--navy-deep);color:#fff;padding:44px 0 44px;text-align:cen
   .proofbar div:nth-child(2){border-right:none}
   .proofbar div:nth-child(1),.proofbar div:nth-child(2){border-bottom:1px solid var(--line-w)}
   .panel{padding:60px 32px}
+  .career-read-grid{grid-template-columns:1fr 1fr}
   .nav-cta .btn:first-child{display:none}
 }
 @media (max-width:640px){
@@ -327,6 +359,10 @@ footer{background:var(--navy-deep);color:#fff;padding:44px 0 44px;text-align:cen
   .assist b{display:block;margin:6px 0 0}
   .nav-in{padding:9px 20px}
   .nav-brand{font-size:10px;letter-spacing:.12em}
+  .mechanism-shell{padding:22px 16px}
+  .mech-grid,.career-read-grid{grid-template-columns:1fr}
+  .mech-node{min-height:auto}
+  .outcome,.loop{min-width:0;width:100%}
 }
 </style>
 </head>
@@ -405,32 +441,76 @@ footer{background:var(--navy-deep);color:#fff;padding:44px 0 44px;text-align:cen
   </div>
 </section>
 
-<!-- ================= HẠNH GỬI TẶNG BẠN ================= -->
-<section class="white">
+<!-- ================= BẢN ĐỒ CƠ CHẾ NGHỀ NGHIỆP ================= -->
+<section class="career-map" id="mechanism">
   <div class="wrap">
-    <p class="eyebrow rv" data-n="03">Hạnh gửi tặng bạn</p>
-    <h2 class="rv">Bốn nơi giá trị người giỏi thường bị đọc sai</h2>
-    <div class="offer rv">
-      <div>
-        <p>Nếu bạn đang muốn biết <span class="hl">3 loại năng lực sẽ mất giá và 3 loại sẽ đắt lên trong 24 tháng tới</span>, và bạn đang đứng ở đâu? Hạnh gửi tặng bạn tài liệu.</p>
-        <a class="btn" href="https://forms.gle/cuwyw1NTavCeSk6J6"><span>Nhận tài liệu</span></a>
+    <p class="eyebrow rv" data-n="03">Bản đồ cơ chế nghề nghiệp</p>
+    <h2 class="rv">Một kết quả nghề nghiệp thường không được tạo bởi một yếu tố.</h2>
+    <p class="map-lead rv">Có ít nhất ba hệ cùng lúc đang đọc bạn: con người, tổ chức và thị trường.</p>
+
+    <div class="mechanism-shell rv">
+      <div class="mech-title">BA HỆ KHÁC NHAU CÓ THỂ CÙNG DẪN VỀ MỘT KẾT QUẢ</div>
+      <div class="mech-grid">
+        <div class="mech-col">
+          <div class="mech-node active"><span class="node-label">Psychology</span><b>Sợ làm phiền, sợ bị ghét, tự thu nhỏ nhu cầu</b></div>
+          <div class="map-arrow">↓</div>
+          <div class="mech-node"><span class="node-label">Response</span><b>Tự làm nhỏ giá trị và tín hiệu</b></div>
+        </div>
+        <div class="mech-col">
+          <div class="mech-node active"><span class="node-label">Organization</span><b>Nhãn cũ, ngân sách, quyền lực, người ra quyết định</b></div>
+          <div class="map-arrow">↓</div>
+          <div class="mech-node"><span class="node-label">Response</span><b>Ít lý do để hệ thống định giá lại</b></div>
+        </div>
+        <div class="mech-col">
+          <div class="mech-node active"><span class="node-label">Market</span><b>Neo lương, cung cầu, AI, chuẩn năng lực mới</b></div>
+          <div class="map-arrow">↓</div>
+          <div class="mech-node"><span class="node-label">Response</span><b>Tín hiệu thấp tiếp tục được tái sử dụng</b></div>
+        </div>
       </div>
-      <div>
-        <p>Người giỏi đang lo mình lỗi thời? Khối cơ chế STAR gồm System, Translation, Authority, Repositioning. Nếu bạn muốn <span class="hl">tự soi mình đang đứng ở đâu trong thị trường</span>, bản STAR Read ở đây.</p>
-        <a class="btn gold" href="https://forms.gle/CxEjUvd61AjkAUEKA"><span>Nhận bản STAR Read</span></a>
+      <div class="converge">
+        <div class="map-arrow">↘ &nbsp; ↓ &nbsp; ↙</div>
+        <div class="outcome">BẠN BỊ ĐỌC THẤP</div>
+        <div class="map-arrow">↓</div>
+        <div class="loop">BẠN BẮT ĐẦU TỰ ĐỌC THẤP CHÍNH MÌNH</div>
+        <div class="loopline">Và vòng lặp quay trở lại cách bạn nói, chọn việc, thương lượng và tự định vị.</div>
       </div>
+    </div>
+    <div class="map-actions rv">
+      <a class="btn goldlt" href="#star-career-read"><span>Tự đọc xem mình đang mắc ở đâu</span></a>
     </div>
   </div>
 </section>
 
-<section class="navy" style="padding:52px 0">
+<!-- ================= STAR CAREER READ ================= -->
+<section class="career-read" id="star-career-read">
   <div class="wrap">
-    <p class="eyebrow rv" data-n="—">Khối cơ chế STAR</p>
-    <div class="star stag">
-      <div><b>S</b><span>System</span></div>
-      <div><b>T</b><span>Translation</span></div>
-      <div><b>A</b><span>Authority</span></div>
-      <div><b>R</b><span>Repositioning</span></div>
+    <p class="eyebrow rv" data-n="—">STAR Career Read</p>
+    <h2 class="rv">Một cách để đọc lại sự nghiệp trước khi vội sửa nó.</h2>
+    <div class="career-read-grid stag">
+      <article class="career-card">
+        <div class="career-letter">S</div><h3>System</h3>
+        <p><strong>Hệ thống đang đặt bạn ở chiếc ghế nào?</strong></p><div class="career-rule"></div>
+        <p>Ai đang đọc bạn? Họ dùng tiêu chí nào? Quyền quyết định thật sự nằm ở đâu?</p>
+      </article>
+      <article class="career-card">
+        <div class="career-letter">T</div><h3>Translation</h3>
+        <p><strong>Năng lực thật đã được dịch thành tín hiệu thị trường hiểu chưa?</strong></p><div class="career-rule"></div>
+        <p>Kinh nghiệm cần được chuyển thành evidence, achievement và business impact.</p>
+      </article>
+      <article class="career-card">
+        <div class="career-letter">A</div><h3>Authority</h3>
+        <p><strong>Ai có đủ dữ liệu và lý do để tin bạn ở level tiếp theo?</strong></p><div class="career-rule"></div>
+        <p>Làm tốt chưa chắc tạo authority. Được tin dùng chưa chắc được lựa chọn.</p>
+      </article>
+      <article class="career-card">
+        <div class="career-letter">R</div><h3>Repositioning</h3>
+        <p><strong>Khi thị trường đổi, điều gì cần giữ, học và dịch chuyển?</strong></p><div class="career-rule"></div>
+        <p>Không cần học lại tất cả. Cần biết đâu là lõi, đâu cần bổ sung và đâu có thể dùng công cụ để lướt.</p>
+      </article>
+    </div>
+    <div class="career-read-cta rv">
+      <a class="btn gold" href="https://forms.gle/CxEjUvd61AjkAUEKA"><span>Nhận STAR Career Read</span></a>
+      <p class="career-read-note">Tự soi trước. Không cần coaching ngay.</p>
     </div>
   </div>
 </section>
