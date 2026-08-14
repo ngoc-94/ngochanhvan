@@ -274,6 +274,24 @@ p:last-child{margin-bottom:0}
 .assist b{font-family:var(--display);font-size:1.75rem;font-weight:500;color:#fff;letter-spacing:.03em;display:inline-block;margin-left:6px;vertical-align:-2px}
 .assist a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(231,197,116,.6)}
 
+/* ---------- phù hợp / coaching 1:1 ---------- */
+.fit-intro{max-width:880px}
+.fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:30px}
+.fit-card{border:1px solid var(--line);background:#fff;padding:30px 28px}
+.fit-card.alt{background:var(--wash)}
+.fit-card h3{font-family:var(--body);font-size:16px;font-weight:600;letter-spacing:.02em;margin-bottom:16px}
+.fit-card ul{margin:0;padding-left:20px}
+.fit-card li{margin:10px 0;color:var(--ink-soft)}
+.coach-panel{background:linear-gradient(135deg,var(--navy-deep) 0%,var(--navy-lt) 100%);color:#fff;padding:76px 0;border-top:3px solid var(--gold-lt)}
+.coach-panel h2{color:#fff;max-width:24ch}
+.coach-lead{font-size:1.08rem;color:rgba(255,255,255,.88);margin:0 0 28px}
+.coach-list{display:grid;grid-template-columns:1fr 1fr;gap:0 34px;margin:0 0 34px}
+.coach-item{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.88)}
+.coach-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.coach-note{font-size:13px;color:rgba(255,255,255,.68);margin:12px 0 0}
+.coach-assist{font-size:14px;color:rgba(255,255,255,.76);margin:18px 0 0}
+.coach-assist a{color:#fff;font-weight:500;text-decoration:none;border-bottom:1px solid rgba(231,197,116,.6)}
+
 /* ---------- identity footer ---------- */
 .idcard{background:var(--wash);border-top:1px solid var(--line)}
 .id-grid{display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:start}
@@ -356,6 +374,9 @@ footer{background:var(--navy-deep);color:#fff;padding:44px 0 44px;text-align:cen
   .track figure{width:210px}
   .track img{height:136px}
   .panel{padding:48px 24px}
+  .fit-grid,.coach-list{grid-template-columns:1fr}
+  .fit-card{padding:24px 20px}
+  .coach-panel{padding:52px 0}
   .assist b{display:block;margin:6px 0 0}
   .nav-in{padding:9px 20px}
   .nav-brand{font-size:10px;letter-spacing:.12em}
@@ -598,15 +619,55 @@ footer{background:var(--navy-deep);color:#fff;padding:44px 0 44px;text-align:cen
 </section>
 -->
 
-<!-- ================= LÀM VIỆC CÙNG HẠNH ================= -->
-<section class="cta-sec" id="coaching">
-  <div class="panel">
-    <p class="eyebrow rv" data-n="—">Làm việc cùng Hạnh</p>
-    <h2 class="rv">Coaching Premium 1:1<em>Chương trình huấn luyện cá nhân hóa</em></h2>
-    <p class="sell rv">Chương trình huấn luyện và chiến lược cá nhân hóa giúp những cá nhân xuất sắc nhận được mức đãi ngộ xứng tầm.</p>
-    <div class="panel-actions rv">
-      <a class="btn goldlt lg" href="https://tinyurl.com/coachingchihanhglobal"><span>Xem lộ trình chi tiết Coaching</span></a>
-      <p class="assist">Trợ lý Hạnh: <b><a href="tel:0352345160">0352 345 160</a></b></p>
+<!-- ================= CÓ PHÙ HỢP KHÔNG? ================= -->
+<section class="white">
+  <div class="wrap">
+    <p class="eyebrow rv" data-n="08">Có phù hợp không?</p>
+    <h2 class="rv fit-intro">Nếu bạn đang tìm một coach nghề nghiệp đại trà giúp bạn giải quyết nhanh vấn đề bề mặt thì Hạnh không phù hợp với bạn.</h2>
+    <div class="fit-grid stag">
+      <div class="fit-card">
+        <h3>Hạnh phù hợp nếu bạn...</h3>
+        <ul>
+          <li>Đã có kinh nghiệm nghề nghiệp thật nhưng đang đứng trước một quyết định lớn.</li>
+          <li>Muốn vào MNC/global hoặc chuyển sang một hệ thống mới mà không muốn bị đặt lại giá trị từ đầu.</li>
+          <li>Có thành tích nhưng khó chuyển thành CV, câu chuyện phỏng vấn hoặc lập luận về mức lương.</li>
+          <li>Ở giai đoạn giữa hoặc cấp cao của sự nghiệp và không biết kỹ năng nào đáng đầu tư trong một thị trường thay đổi nhanh.</li>
+          <li>Chiến lược phát triển nghề nghiệp bền vững qua đọc cơ chế cấu trúc và sơ đồ quyền lực hệ thống quốc tế.</li>
+        </ul>
+      </div>
+      <div class="fit-card alt">
+        <h3>Hạnh có thể không phù hợp nếu...</h3>
+        <ul>
+          <li>Bạn chỉ muốn một mẫu CV để copy.</li>
+          <li>Bạn muốn công thức chắc chắn giúp pass mọi interview.</li>
+          <li>Bạn muốn người khác quyết định nghề nghiệp thay mình.</li>
+          <li>Bạn chưa sẵn sàng nhìn lại kinh nghiệm thật và chịu trách nhiệm cho lựa chọn tiếp theo.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CAREER COACHING 1:1 ================= -->
+<section class="coach-panel" id="coaching">
+  <div class="wrap">
+    <p class="eyebrow rv" data-n="09">Career Coaching 1:1</p>
+    <h2 class="rv">Không phải ai cũng cần coaching. Nhưng có những case không nên tự đoán.</h2>
+    <p class="coach-lead rv">Hạnh không bắt đầu bằng việc sửa CV. Hạnh bắt đầu bằng việc đọc case.</p>
+    <div class="coach-list stag">
+      <div class="coach-item">Bạn thật sự đang có tài sản nghề nghiệp nào?</div>
+      <div class="coach-item">Thị trường đang trả giá cho phần nào?</div>
+      <div class="coach-item">Hệ thống hiện tại đang đọc bạn ra sao?</div>
+      <div class="coach-item">Điểm nghẽn nằm ở kỹ năng, tín hiệu, thẩm quyền hay cách định vị?</div>
+      <div class="coach-item">Role nào đáng theo và role nào nên bỏ?</div>
+      <div class="coach-item">CV, interview và salary strategy cần đổi thế nào sau khi bài toán lớn đã rõ?</div>
+    </div>
+    <div class="rv">
+      <div class="coach-actions">
+        <a class="btn goldlt lg" href="https://docs.google.com/forms/d/e/1FAIpQLSfz6Y-2GdXJlfYu5rmvJ1XiE4_j9UEW20czI6Gj9KcGnAzFmA/viewform" target="_blank" rel="noopener"><span>Đặt lịch trao đổi cùng Hạnh</span></a>
+      </div>
+      <p class="coach-note">Khi trường hợp của bạn cần được đọc riêng.</p>
+      <p class="coach-assist">Trợ lý Hạnh: <a href="tel:0352345160">0352345160</a></p>
     </div>
   </div>
 </section>
