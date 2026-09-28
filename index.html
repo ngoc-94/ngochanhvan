@@ -155,7 +155,8 @@
       .hero { padding: 22px 0 0; }
       .hero-grid { display: grid; gap: 20px; }
       .intro .eyebrow { color: #e08a1e; font-size: 10px; }
-      .intro p { margin: 0 0 10px; color: #111418; font-size: 14px; line-height: 1.5; }
+      .intro p { margin: 0 0 10px; color: #111418; font-size: 14px; line-height: 1.5; font-style: italic; }
+      .intro p.eyebrow { font-style: normal; }
       .intro p b { color: #111418; font-weight: 700; }
       .pub {
         display: flex;
@@ -168,11 +169,11 @@
       .pnlogo { flex: none; width: 26px; height: 32px; background: url("hinh2_mat_truoc_sach.png") no-repeat -203.2px -553.8px / 443.2px auto; }
       .pub span { font-size: 12.5px; font-weight: 600; color: var(--ink); }
       .hero .btn { margin-top: 16px; }
-      .portrait { margin: 0; border: 1px solid var(--line); background: #fff; }
-      .portrait img { width: auto; height: 520px; max-width: 100%; margin: 0 auto; object-fit: contain; }
+      .portrait { margin: 0 auto; width: 100%; max-width: 340px; background: #fff; }
+      .flap { position: relative; aspect-ratio: 760 / 1610; overflow: hidden; border-radius: 6px; box-shadow: 0 18px 40px -26px rgba(14, 46, 76, 0.55); }
+      .flap img { position: absolute; width: 115.53%; max-width: none; height: auto; left: -9.21%; top: -17.39%; }
       .portrait figcaption {
-        padding: 11px 12px;
-        border-top: 1px solid var(--line);
+        padding: 12px 4px 0;
         background: #fff;
         color: var(--red);
         font-size: 13px;
@@ -213,9 +214,9 @@
       .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
       .metric { padding: 14px; border-radius: 12px; color: #fff; }
       .metric:nth-child(1) { background: #123a5f; }
-      .metric:nth-child(2) { background: #fbeef0; }
-      .metric:nth-child(2) b { color: #8c1d2c; }
-      .metric:nth-child(2) span { color: #5a3a40; }
+      .metric:nth-child(2) { background: #fdefd6; }
+      .metric:nth-child(2) b { color: #a8561a; }
+      .metric:nth-child(2) span { color: #6b4a1f; }
       .metric:nth-child(3) { background: #8c1d2c; }
       .metric:nth-child(4) { background: #a87c22; }
       .metric b { display: block; color: #fff; font: 500 1.5rem/1 var(--serif); letter-spacing: -0.03em; }
@@ -277,7 +278,10 @@
       .pcard { background: #fff; border: 1px solid #e6eaef; border-radius: 14px; overflow: hidden; box-shadow: 0 12px 28px -22px rgba(14, 46, 76, 0.5); }
       .pcard img { width: 100%; aspect-ratio: 4 / 5; height: auto; object-fit: cover; object-position: 50% 20%; background: #e9eef3; }
       .pcard img.ph-bruno { object-position: 53% 30%; }
-      .pcard img.ph-hanh { object-position: 50% 2%; }
+      .ph-wrap { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #e9eef3; }
+      .pcard .ph-wrap img { position: absolute; width: 125%; max-width: none; aspect-ratio: auto; height: auto; left: -12.5%; top: -26%; }
+      .pcard .nm + ul { margin-top: 8px; }
+      .pcard .nm .sub { font-weight: 600; color: var(--gold); font-size: 0.86em; }
       .pcard .pc { padding: 12px 12px 14px; }
       .pcard .nm { display: block; font-size: 14px; font-weight: 700; color: var(--navy); }
       .pcard .r { margin: 2px 0 8px; font-size: 12px; font-weight: 600; color: var(--gold); line-height: 1.35; }
@@ -339,7 +343,7 @@
         .hero { padding: 48px 0 0; }
         .hero-grid { grid-template-columns: 1.05fr 0.95fr; align-items: center; gap: 56px; }
         .intro p { font-size: 15px; }
-        .portrait img { height: 600px; }
+        .portrait { max-width: 360px; }
         .star-read { padding: 48px 0; }
         .founder { font-size: 15px; }
         .srs { grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -408,7 +412,7 @@
             <a class="btn" href="khoa-hoc.html">Tải tài liệu &amp; STAR READ&nbsp; →</a>
           </div>
           <figure class="portrait reveal">
-            <img src="hinh1_tay_gap_ben_phai.png" alt="Tay gấp bìa trước sách: Văn Thị Ngọc Hạnh" width="878" height="2493" fetchpriority="high" decoding="async" />
+            <div class="flap"><img src="hinh1_tay_gap_ben_phai.png" alt="Tay gấp bìa trước sách: Văn Thị Ngọc Hạnh" width="878" height="2493" fetchpriority="high" decoding="async" /></div>
             <figcaption>13 NĂM GLOBAL &amp; hệ sinh thái Apple · BIG TECH</figcaption>
           </figure>
         </div>
@@ -526,9 +530,9 @@
               </div>
             </article>
             <article class="pcard reveal">
-              <img class="ph-hanh" src="CHAN%20DUNG%20CUOI%20CUNG.webp" alt="Văn Thị Ngọc Hạnh" width="600" height="750" loading="lazy" />
+              <div class="ph-wrap"><img class="ph-hanh" src="CHAN%20DUNG%20CUOI%20CUNG.webp" alt="Văn Thị Ngọc Hạnh" width="940" height="1670" loading="lazy" /></div>
               <div class="pc">
-                <b class="nm">Văn Thị Ngọc Hạnh</b> <div class="r">Chị Hạnh Global</div>
+                <b class="nm">Văn Thị Ngọc Hạnh <span class="sub">· Chị Hạnh Global</span></b>
                 <ul>
                   <li>Thành viên <b>hội đồng tuyển dụng</b> cho các dự án Big Tech</li>
                   <li>13 năm Global &amp; hệ sinh thái <b>Apple</b></li>
