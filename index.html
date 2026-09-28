@@ -161,19 +161,18 @@
       .pub {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 10px;
         margin: 14px 0 0;
-        padding-top: 12px;
-        border-top: 1px solid var(--line);
       }
       .pnlogo { flex: none; width: 26px; height: 32px; background: url("hinh2_mat_truoc_sach.png") no-repeat -203.2px -553.8px / 443.2px auto; }
       .pub span { font-size: 12.5px; font-weight: 600; color: var(--ink); }
       .hero .btn { margin-top: 16px; }
       .portrait { margin: 0 auto; width: 100%; max-width: 340px; background: #fff; }
-      .flap { position: relative; aspect-ratio: 760 / 1610; overflow: hidden; border-radius: 6px; box-shadow: 0 18px 40px -26px rgba(14, 46, 76, 0.55); }
-      .flap img { position: absolute; width: 115.53%; max-width: none; height: auto; left: -9.21%; top: -17.39%; }
+      .flap { position: relative; aspect-ratio: 760 / 1470; overflow: hidden; border-radius: 6px; box-shadow: 0 18px 40px -26px rgba(14, 46, 76, 0.55); }
+      .flap img { position: absolute; width: 115.53%; max-width: none; height: auto; left: -9.21%; top: -19.05%; }
       .portrait figcaption {
-        padding: 12px 4px 0;
+        padding: 8px 4px 0;
         background: #fff;
         color: var(--red);
         font-size: 13px;
@@ -262,7 +261,6 @@
       .tc figcaption b { display: block; font-size: 12.5px; font-style: normal; font-weight: 700; color: var(--red); }
       .tc figcaption a { color: #6a7682; text-underline-offset: 3px; }
       .tc .q { font-size: 13.5px; line-height: 1.35; font-weight: 700; color: #111418; }
-      .tc.fb { background: #fff; border-color: var(--line); box-shadow: none; }
 
       /* STAR READ SYSTEM - chương trình */
       .offer { background: var(--navy); color: #fff; }
@@ -281,7 +279,7 @@
       .ph-wrap { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #e9eef3; }
       .pcard .ph-wrap img { position: absolute; width: 125%; max-width: none; aspect-ratio: auto; height: auto; left: -12.5%; top: -26%; }
       .pcard .nm + ul { margin-top: 8px; }
-      .pcard .nm .sub { font-weight: 600; color: var(--gold); font-size: 0.86em; }
+      .pcard .nm .sub { font-weight: 600; color: var(--gold); font-size: 0.86em; white-space: nowrap; }
       .pcard .pc { padding: 12px 12px 14px; }
       .pcard .nm { display: block; font-size: 14px; font-weight: 700; color: var(--navy); }
       .pcard .r { margin: 2px 0 8px; font-size: 12px; font-weight: 600; color: var(--gold); line-height: 1.35; }
@@ -303,6 +301,7 @@
       .track { display: flex; gap: 10px; width: max-content; animation: slide 36s linear infinite; }
       .track figure { margin: 0; flex: 0 0 auto; width: 146px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.22); background: #fff; }
       .track img { width: 100%; height: 97px; object-fit: cover; object-position: 50% 30%; }
+      .track img.cover-strip { object-position: 50% 44%; }
       @keyframes slide { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
 
       footer { padding: 22px 0 84px; background: var(--deep); color: rgba(255, 255, 255, 0.66); font-size: 12px; line-height: 1.5; }
@@ -352,12 +351,12 @@
         .metrics { gap: 12px; }
         .metric { padding: 20px; }
         .metric b { font-size: 2rem; }
-        .proofs { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+        .proofs { grid-template-columns: repeat(2, 1fr); gap: 14px; }
         .proof { display: block; }
-        .proof img { height: 210px; }
+        .proof img { height: 240px; object-fit: contain; background: #fff; }
         .proof-copy { padding: 16px; }
         .book-grid { grid-template-columns: 2fr 1fr; gap: 28px; }
-        .tgrid { grid-template-columns: 1fr 1fr; }
+        .tgrid { grid-template-columns: repeat(3, 1fr); }
         .adv-sec { padding: 48px 0; }
         .adv { gap: 20px; max-width: 680px; margin: 0 auto; }
         .pcard .pc { padding: 16px 18px 18px; }
@@ -405,14 +404,14 @@
             <p>
               Chị có hơn 13 năm làm việc trong môi trường đa quốc gia. Sau khi trở thành nhân sự xuất sắc, chị là thành viên của <b>hội đồng tuyển dụng</b> cho các dự án thuộc hệ sinh thái <b>Big Tech</b>. Chính vị trí ở phía bên kia bàn tuyển dụng đã cho chị góc nhìn nội bộ để phát hiện những điểm khiến người Việt có năng lực bị định giá sai trong tổ chức.
             </p>
-            <div class="pub">
-              <span class="pnlogo" role="img" aria-label="Logo NXB Phụ nữ Việt Nam"></span>
-              <span>NXB Phụ nữ Việt Nam</span>
-            </div>
             <a class="btn" href="khoa-hoc.html">Tải tài liệu &amp; STAR READ&nbsp; →</a>
           </div>
           <figure class="portrait reveal">
             <div class="flap"><img src="hinh1_tay_gap_ben_phai.png" alt="Tay gấp bìa trước sách: Văn Thị Ngọc Hạnh" width="878" height="2493" fetchpriority="high" decoding="async" /></div>
+            <div class="pub">
+              <span class="pnlogo" role="img" aria-label="Logo NXB Phụ nữ Việt Nam"></span>
+              <span>NXB Phụ nữ Việt Nam</span>
+            </div>
             <figcaption>13 NĂM GLOBAL &amp; hệ sinh thái Apple · BIG TECH</figcaption>
           </figure>
         </div>
@@ -465,11 +464,6 @@
               <img src="cheers-award.webp" alt="Cheers Award trao cho Văn Thị Ngọc Hạnh" loading="lazy" />
               <div class="proof-copy"><small>System</small><b>Top Performer</b><p>Productivity &amp; Quality · 6 năm liên tục</p></div>
             </article>
-            <figure class="tc fb reveal">
-              <div class="q">“I have learned a lot from a professional.”</div>
-              <p>“I want to thank you so much for your help. You are a good teacher and I have learned a lot from a professional.”</p>
-              <figcaption><b>Bernie V**</b>International Teacher</figcaption>
-            </figure>
             <article class="proof reveal">
               <img src="1-2-trieu-luot-xem.webp" alt="Bài viết đạt 1,2 triệu lượt xem" loading="lazy" />
               <div class="proof-copy"><small>Market</small><b>1,2 triệu lượt xem</b><p>161,6K tương tác · Kiến Thức Tài Chính phát triển thành video.</p></div>
@@ -497,6 +491,11 @@
             </div>
           </div>
           <div class="tgrid">
+            <figure class="tc reveal">
+              <div class="q">“I have learned a lot from a professional.”</div>
+              <p>“I want to thank you so much for your help. You are a good teacher and I have learned a lot from a professional.”</p>
+              <figcaption><b>Bernie V**</b>International Teacher</figcaption>
+            </figure>
             <figure class="tc reveal">
               <p>“Có những điều mình biết nhưng chưa dám tin. Hạnh giúp mình sáng ra, kiểm chứng lại điều đúng và có thêm niềm tin để hành động.”</p>
               <figcaption><b>Manager · Fortune 500</b><a href="cam-nhan-manager.webp" target="_blank" rel="noreferrer">Xem phản hồi nguyên bản</a></figcaption>
@@ -536,7 +535,6 @@
                 <ul>
                   <li>Thành viên <b>hội đồng tuyển dụng</b> cho các dự án Big Tech</li>
                   <li>13 năm Global &amp; hệ sinh thái <b>Apple</b></li>
-                  <li>Xây dựng các quy trình quản lý chất lượng trong MNC</li>
                   <li><b>Tác giả sách</b> "Người im lặng trả phí cho người lên tiếng"</li>
                 </ul>
               </div>
@@ -551,10 +549,9 @@
       <div class="track" id="track">
         <figure><img loading="lazy" decoding="async" src="dai-1-luot-xem.webp" alt="Bài viết 1,2 triệu lượt xem" /></figure>
         <figure><img loading="lazy" decoding="async" src="dai-2-kttc.webp" alt="Kiến Thức Tài Chính" /></figure>
-        <figure><img loading="lazy" decoding="async" src="dai-3-sach.webp" alt="Bìa sách" /></figure>
+        <figure><img class="cover-strip" loading="lazy" decoding="async" src="hinh2_mat_truoc_sach.png" alt="Bìa sách Người im lặng trả phí cho người lên tiếng" /></figure>
         <figure><img loading="lazy" decoding="async" src="dai-4-menara.webp" alt="Menara Shell Kuala Lumpur" /></figure>
         <figure><img loading="lazy" decoding="async" src="dai-5-vna.webp" alt="Vietnam Airlines" /></figure>
-        <figure><img loading="lazy" decoding="async" src="dai-6-quoc-te.webp" alt="Môi trường đa quốc gia" /></figure>
         <figure><img loading="lazy" decoding="async" src="dai-7-cheers.webp" alt="Cheers Award" /></figure>
       </div>
     </div>
