@@ -12,11 +12,14 @@
   // ---------- dữ liệu mẫu ----------
   const D = {
     user: { email: "hocvien@gmail.com", user_metadata: { full_name: "Học viên xem thử" } },
-    courses: [{ slug: "star-read", title: "STAR READ SYSTEM", subtitle: "Đọc luật ngầm, định vị giá trị" }],
+    courses: [
+      { slug: "break-the-salary-ceiling", title: "BREAK THE SALARY CEILING", subtitle: "Khóa I" },
+      { slug: "global-red-carpet", title: "GLOBAL RED CARPET", subtitle: "Khóa II" },
+    ],
     lessons: [
-      { id: 1, course_slug: "star-read", position: 1, title: "Ngày 1: Vì sao người giỏi vẫn bị trả thấp", summary: "Nhận diện điểm mù \"cứ làm tốt rồi sẽ được ghi nhận\".", duration_min: 30 },
-      { id: 2, course_slug: "star-read", position: 2, title: "Ngày 2: Đọc luật ngầm trong MNC", summary: "Ai quyết định ngân sách, ai ảnh hưởng thăng chức, ai giữ câu chuyện trong tổ chức.", duration_min: 35 },
-      { id: 3, course_slug: "star-read", position: 3, title: "Ngày 3: Kể công mà không khoe", summary: "Biến thành tích thành ngôn ngữ lãnh đạo nghe hiểu.", duration_min: 28 },
+      { id: 1, course_slug: "break-the-salary-ceiling", position: 1, title: "Ngày 1: Vì sao người giỏi vẫn bị trả thấp", summary: "Nhận diện điểm mù \"cứ làm tốt rồi sẽ được ghi nhận\".", duration_min: 30 },
+      { id: 2, course_slug: "break-the-salary-ceiling", position: 2, title: "Ngày 2: Đọc luật ngầm trong MNC", summary: "Ai quyết định ngân sách, ai ảnh hưởng thăng chức, ai giữ câu chuyện trong tổ chức.", duration_min: 35 },
+      { id: 3, course_slug: "break-the-salary-ceiling", position: 3, title: "Ngày 3: Kể công mà không khoe", summary: "Biến thành tích thành ngôn ngữ lãnh đạo nghe hiểu.", duration_min: 28 },
     ],
   };
   const demoKey = "hoc_demo_progress";
@@ -51,10 +54,9 @@
 
     async myCourses() {
       if (demo) return D.courses;
-      const { data: enr } = await sb.from("enrollments").select("course_slug, expires_at");
-      const ok = (enr || []).filter((e) => !e.expires_at || new Date(e.expires_at) > new Date()).map((e) => e.course_slug);
-      if (!ok.length) return [];
-      const { data } = await sb.from("courses").select("*").in("slug", ok).order("sort_order");
+      const { data: mem } = await sb.from("members").select("level, expires_at").maybeSingle();
+      if (!mem || (mem.expires_at && new Date(mem.expires_at) < new Date())) return [];
+      const { data } = await sb.from("courses").select("*").lte("level", mem.level).order("sort_order");
       return data || [];
     },
 

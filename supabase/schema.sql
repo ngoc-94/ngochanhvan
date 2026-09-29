@@ -1,4 +1,5 @@
 -- Khu học viên Chị Hạnh Global
+-- Sau file này chạy tiếp supabase/nang-cap-3-khoa.sql (bản thiết kế 3 khóa theo cấp).
 -- Chạy toàn bộ file này 1 lần trong Supabase > SQL Editor.
 
 -- 1. Khóa học (ai cũng đọc được tên khóa)

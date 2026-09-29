@@ -35,26 +35,26 @@ exports.handler = async (event) => {
   const user = await u.json();
   const email = String(user.email || "").toLowerCase();
 
-  // 2. Bài học thuộc khóa nào
-  const l = await fetch(`${SUPABASE_URL}/rest/v1/lessons?id=eq.${lessonId}&select=course_slug`, { headers: svc });
-  const [lesson] = await l.json();
-  if (!lesson) return json(404, { error: "no_lesson" });
-
-  // 3. Có ghi danh khóa đó không
-  const e = await fetch(
-    `${SUPABASE_URL}/rest/v1/enrollments?email=eq.${encodeURIComponent(email)}` +
-      `&course_slug=eq.${encodeURIComponent(lesson.course_slug)}&select=expires_at`,
+  // 2. Bài học, khóa và mã video
+  const l = await fetch(
+    `${SUPABASE_URL}/rest/v1/lessons?id=eq.${lessonId}&select=bunny_video_id,courses(level)`,
     { headers: svc }
   );
-  const [enr] = await e.json();
-  if (!enr || (enr.expires_at && new Date(enr.expires_at) < new Date())) {
+  const [lesson] = await l.json();
+  if (!lesson || !lesson.courses) return json(404, { error: "no_lesson" });
+
+  // 3. Cấp của học viên có đủ mở khóa này không
+  const m = await fetch(
+    `${SUPABASE_URL}/rest/v1/members?email=eq.${encodeURIComponent(email)}&select=level,expires_at`,
+    { headers: svc }
+  );
+  const [mem] = await m.json();
+  const expired = mem && mem.expires_at && new Date(mem.expires_at) < new Date();
+  if (!mem || expired || mem.level < lesson.courses.level) {
     return json(403, { error: "not_enrolled" });
   }
-
-  // 4. Lấy mã video và ký link
-  const v = await fetch(`${SUPABASE_URL}/rest/v1/lesson_videos?lesson_id=eq.${lessonId}&select=bunny_video_id`, { headers: svc });
-  const [video] = await v.json();
-  if (!video) return json(404, { error: "no_video" });
+  if (!lesson.bunny_video_id) return json(404, { error: "no_video" });
+  const video = { bunny_video_id: lesson.bunny_video_id };
 
   const expires = Math.floor(Date.now() / 1000) + LINK_TTL_SEC;
   const token = crypto

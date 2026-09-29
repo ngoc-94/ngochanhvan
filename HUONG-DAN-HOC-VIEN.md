@@ -8,7 +8,7 @@ Xem giao diện mẫu (chưa cần cài gì): `https://ngochanhvan.com/hoc/?demo
 
 ### 1. Supabase (đăng nhập + dữ liệu, miễn phí)
 1. Tạo tài khoản ở supabase.com, tạo project mới, chọn vùng **Singapore**.
-2. Vào **SQL Editor**, dán toàn bộ file `supabase/schema.sql`, bấm **Run**.
+2. Vào **SQL Editor**, chạy lần lượt `supabase/schema.sql` rồi `supabase/nang-cap-3-khoa.sql`.
 3. **Authentication > Providers > Google**: bật lên, dán Client ID và Client Secret của Google
    (tạo trong Google Cloud Console > APIs & Services > Credentials > OAuth client ID, loại Web application,
    ô "Authorized redirect URIs" dán link callback mà Supabase hiện ra).
@@ -38,12 +38,31 @@ Xem giao diện mẫu (chưa cần cài gì): `https://ngochanhvan.com/hoc/?demo
 
 Sau đó **Deploys > Trigger deploy**.
 
-## Việc hằng ngày
+## Việc hằng ngày (Supabase > Table Editor)
 
-**Thêm bài học**: Supabase > Table Editor > `lessons` > Insert row.
-**Gắn video vào bài**: bảng `lesson_videos`, điền `lesson_id` và `bunny_video_id`.
-**Mở khóa cho học viên**: bảng `enrollments`, điền Gmail học viên và `star-read`.
-Muốn giới hạn thời gian học thì điền `expires_at`, để trống là trọn đời.
+Chỉ có 2 bảng chị cần đụng tới, sửa như Excel: bấm đúp vào ô, gõ, Enter.
+
+**Bảng `members`: học viên.** Mỗi người một dòng.
+| Cột | Điền gì |
+|---|---|
+| email | Gmail học viên dùng để đăng nhập |
+| level | 1 = Break the Salary Ceiling · 2 = thêm Global Red Carpet · 3 = cả 3 khóa |
+| full_name, note | Tùy chọn |
+| expires_at | Để trống = học trọn đời |
+
+Học viên nâng cấp khóa: chỉ sửa số ở cột `level`.
+
+**Bảng `lessons`: bài học.** Mỗi video một dòng.
+| Cột | Điền gì |
+|---|---|
+| course_slug | `break-the-salary-ceiling`, `global-red-carpet` hoặc `star-read` |
+| position | Thứ tự bài trong khóa: 1, 2, 3... |
+| title | Tên bài, vd: "Buổi 1: Cơ chế định giá lương" |
+| summary | Một câu mô tả dưới video (tùy chọn) |
+| duration_min | Số phút (tùy chọn) |
+| bunny_video_id | Video ID trong Bunny |
+
+Chuyển video sang khóa khác: sửa cột `course_slug`.
 
 ## Bảo mật hoạt động thế nào
 - Chưa đăng nhập hoặc chưa được mở khóa: không thấy danh sách bài, không lấy được video.
