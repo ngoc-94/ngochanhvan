@@ -8,7 +8,7 @@ Xem giao diện mẫu (chưa cần cài gì): `https://ngochanhvan.com/hoc/?demo
 
 ### 1. Supabase (đăng nhập + dữ liệu, miễn phí)
 1. Tạo tài khoản ở supabase.com, tạo project mới, chọn vùng **Singapore**.
-2. Vào **SQL Editor**, chạy lần lượt `supabase/schema.sql` rồi `supabase/nang-cap-3-khoa.sql`.
+2. Vào **SQL Editor**, chạy `supabase/schema.sql`.
 3. **Authentication > Providers > Google**: bật lên, dán Client ID và Client Secret của Google
    (tạo trong Google Cloud Console > APIs & Services > Credentials > OAuth client ID, loại Web application,
    ô "Authorized redirect URIs" dán link callback mà Supabase hiện ra).
@@ -35,34 +35,19 @@ Xem giao diện mẫu (chưa cần cài gì): `https://ngochanhvan.com/hoc/?demo
 | SUPABASE_SERVICE_ROLE_KEY | service_role key |
 | BUNNY_LIBRARY_ID | Library ID |
 | BUNNY_TOKEN_KEY | Token Authentication Key |
+| BUNNY_API_KEY | API Key của thư viện (Bunny > thư viện > API) |
 
 Sau đó **Deploys > Trigger deploy**.
 
-## Việc hằng ngày (Supabase > Table Editor)
+## Việc hằng ngày
 
-Chỉ có 2 bảng chị cần đụng tới, sửa như Excel: bấm đúp vào ô, gõ, Enter.
+**Thêm bài học: chỉ làm trong Bunny.**
+- 3 thư mục (Collection) trong thư viện Bunny: `PROGRAM 1: BREAK THE SALARY CEILING`, `PROGRAM 2: GLOBAL RED CARPET`, `PROGRAM 3: STAR READ SYSTEM`. Tên phải bắt đầu bằng `PROGRAM 1/2/3`.
+- Video nằm trong thư mục nào thì thuộc khóa đó. Tên video = tên bài học viên thấy.
+- Đặt số đầu tên để xếp thứ tự: `01 WS1`, `02 WS2`... Web tự ẩn số và đuôi `.mp4`. Không có số thì xếp theo thứ tự tải lên.
+- Đổi tên bài: đổi tên video. Chuyển khóa: chuyển video sang thư mục khác.
 
-**Bảng `members`: học viên.** Mỗi người một dòng.
-| Cột | Điền gì |
-|---|---|
-| email | Gmail học viên dùng để đăng nhập |
-| level | 1 = Break the Salary Ceiling · 2 = thêm Global Red Carpet · 3 = cả 3 khóa |
-| full_name, note | Tùy chọn |
-| expires_at | Để trống = học trọn đời |
-
-Học viên nâng cấp khóa: chỉ sửa số ở cột `level`.
-
-**Bảng `lessons`: bài học.** Mỗi video một dòng.
-| Cột | Điền gì |
-|---|---|
-| course_slug | `break-the-salary-ceiling`, `global-red-carpet` hoặc `star-read` |
-| position | Thứ tự bài trong khóa: 1, 2, 3... |
-| title | Tên bài, vd: "Buổi 1: Cơ chế định giá lương" |
-| summary | Một câu mô tả dưới video (tùy chọn) |
-| duration_min | Số phút (tùy chọn) |
-| bunny_video_id | Video ID trong Bunny |
-
-Chuyển video sang khóa khác: sửa cột `course_slug`.
+**Thêm học viên:** nhắn Claude (đã kết nối Supabase), hoặc Supabase > Table Editor > bảng `members`: điền `email` và `level` (1 = Program I, 2 = I+II, 3 = cả ba).
 
 ## Bảo mật hoạt động thế nào
 - Chưa đăng nhập hoặc chưa được mở khóa: không thấy danh sách bài, không lấy được video.

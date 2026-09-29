@@ -52,56 +52,56 @@
       location.href = demo ? "./?demo=1" : "./";
     },
 
-    async myCourses() {
-      if (demo) return D.courses;
-      const { data: mem } = await sb.from("members").select("level, expires_at").maybeSingle();
-      if (!mem || (mem.expires_at && new Date(mem.expires_at) < new Date())) return [];
-      const { data } = await sb.from("courses").select("*").lte("level", mem.level).order("sort_order");
-      return data || [];
+    // Gọi 1 lần: các khóa được học + bài lấy từ thư mục Bunny
+    _cache: null,
+    async _load() {
+      if (HOC._cache) return HOC._cache;
+      if (demo) {
+        HOC._cache = D.courses.map((c) => ({ ...c, lessons: D.lessons.filter((l) => l.course_slug === c.slug) }));
+        return HOC._cache;
+      }
+      const { data } = await sb.auth.getSession();
+      const r = await fetch("/.netlify/functions/khoa-hoc", {
+        headers: { Authorization: "Bearer " + data.session.access_token },
+      });
+      const j = await r.json().catch(() => ({}));
+      HOC._cache = r.ok ? j.courses || [] : [];
+      return HOC._cache;
     },
 
-    async course(slug) {
-      if (demo) return D.courses.find((c) => c.slug === slug) || null;
-      const { data } = await sb.from("courses").select("*").eq("slug", slug).maybeSingle();
-      return data;
-    },
-
-    async lessons(slug) {
-      if (demo) return D.lessons.filter((l) => l.course_slug === slug);
-      const { data } = await sb.from("lessons").select("id, course_slug, position, title, summary, duration_min")
-        .eq("course_slug", slug).order("position");
-      return data || [];
-    },
+    async myCourses() { return HOC._load(); },
+    async course(slug) { return (await HOC._load()).find((c) => c.slug === slug) || null; },
+    async lessons(slug) { const c = await HOC.course(slug); return c ? c.lessons : []; },
 
     async progress(ids) {
       if (demo) return demoLoad();
       if (!ids.length) return {};
-      const { data } = await sb.from("lesson_progress").select("lesson_id, position_sec, completed").in("lesson_id", ids);
+      const { data } = await sb.from("video_progress").select("video_id, position_sec, completed").in("video_id", ids);
       const map = {};
-      (data || []).forEach((r) => (map[r.lesson_id] = r));
+      (data || []).forEach((r) => (map[r.video_id] = r));
       return map;
     },
 
-    async saveProgress(lessonId, sec, completed) {
+    async saveProgress(videoId, sec, completed) {
       sec = Math.max(0, Math.floor(sec || 0));
       if (demo) {
         const p = demoLoad();
-        const prev = p[lessonId] || {};
-        p[lessonId] = { position_sec: sec, completed: !!(completed || prev.completed) };
+        const prev = p[videoId] || {};
+        p[videoId] = { position_sec: sec, completed: !!(completed || prev.completed) };
         demoSave(p);
         return;
       }
       const u = await HOC.user();
       if (!u) return;
-      const row = { user_id: u.id, lesson_id: lessonId, position_sec: sec, updated_at: new Date().toISOString() };
+      const row = { user_id: u.id, video_id: videoId, position_sec: sec, updated_at: new Date().toISOString() };
       if (completed) row.completed = true;
-      await sb.from("lesson_progress").upsert(row, { onConflict: "user_id,lesson_id" });
+      await sb.from("video_progress").upsert(row, { onConflict: "user_id,video_id" });
     },
 
-    async videoUrl(lessonId) {
+    async videoUrl(videoId) {
       if (demo) return null;
       const { data } = await sb.auth.getSession();
-      const r = await fetch("/.netlify/functions/video-token?lesson=" + lessonId, {
+      const r = await fetch("/.netlify/functions/video-token?video=" + encodeURIComponent(videoId), {
         headers: { Authorization: "Bearer " + data.session.access_token },
       });
       if (!r.ok) return { error: (await r.json().catch(() => ({}))).error || "error" };

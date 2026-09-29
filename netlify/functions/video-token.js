@@ -1,70 +1,33 @@
-// Cấp link video Bunny có chữ ký, chỉ cho học viên đã ghi danh.
-// Biến môi trường cần đặt trong Netlify > Site settings > Environment variables:
-//   SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, BUNNY_LIBRARY_ID, BUNNY_TOKEN_KEY
+// Cấp link video Bunny có chữ ký, chỉ khi video nằm trong thư mục khóa mà học viên đủ cấp.
 const crypto = require("crypto");
+const { env, json, missingConfig, whoAmI, bunny, levelFromName } = require("../lib/common.js");
 
 const LINK_TTL_SEC = 60 * 60 * 3; // link sống 3 tiếng, hết hạn thì tải lại trang
 
-const json = (status, body) => ({
-  statusCode: status,
-  headers: { "content-type": "application/json", "cache-control": "no-store" },
-  body: JSON.stringify(body),
-});
-
 exports.handler = async (event) => {
-  const { SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, BUNNY_LIBRARY_ID, BUNNY_TOKEN_KEY } = process.env;
-  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY || !BUNNY_LIBRARY_ID || !BUNNY_TOKEN_KEY) {
-    return json(500, { error: "missing_config" });
+  const miss = missingConfig();
+  if (miss.length) return json(500, { error: "missing_config", missing: miss });
+
+  const videoId = String((event.queryStringParameters || {}).video || "");
+  if (!/^[0-9a-f-]{36}$/i.test(videoId)) return json(400, { error: "bad_request" });
+
+  try {
+    const me = await whoAmI(event);
+    if (!me) return json(401, { error: "not_signed_in" });
+
+    const video = await bunny(`videos/${videoId}`);
+    if (!video || !video.collectionId) return json(404, { error: "no_video" });
+    const col = await bunny(`collections/${video.collectionId}`);
+    const needLevel = levelFromName(col && col.name);
+    if (!needLevel || me.level < needLevel) return json(403, { error: "not_enrolled" });
+
+    const expires = Math.floor(Date.now() / 1000) + LINK_TTL_SEC;
+    const token = crypto.createHash("sha256").update(env.BUNNY_TOKEN_KEY + videoId + expires).digest("hex");
+    const url =
+      `https://player.mediadelivery.net/embed/${env.BUNNY_LIBRARY_ID}/${videoId}` +
+      `?token=${token}&expires=${expires}&autoplay=false&preload=true&responsive=true`;
+    return json(200, { url });
+  } catch (e) {
+    return json(502, { error: "upstream", detail: String(e.message || e) });
   }
-
-  const auth = event.headers.authorization || event.headers.Authorization || "";
-  const userToken = auth.replace(/^Bearer\s+/i, "");
-  const lessonId = parseInt((event.queryStringParameters || {}).lesson, 10);
-  if (!userToken || !lessonId) return json(400, { error: "bad_request" });
-
-  // Khóa kiểu mới (sb_secret_...) chỉ gửi qua apikey; khóa cũ dạng JWT gửi kèm Authorization
-  const svc = SUPABASE_SERVICE_ROLE_KEY.startsWith("sb_")
-    ? { apikey: SUPABASE_SERVICE_ROLE_KEY }
-    : { apikey: SUPABASE_SERVICE_ROLE_KEY, Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}` };
-
-  // 1. Xác minh người đăng nhập
-  const u = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
-    headers: { apikey: SUPABASE_SERVICE_ROLE_KEY, Authorization: `Bearer ${userToken}` },
-  });
-  if (!u.ok) return json(401, { error: "not_signed_in" });
-  const user = await u.json();
-  const email = String(user.email || "").toLowerCase();
-
-  // 2. Bài học, khóa và mã video
-  const l = await fetch(
-    `${SUPABASE_URL}/rest/v1/lessons?id=eq.${lessonId}&select=bunny_video_id,courses(level)`,
-    { headers: svc }
-  );
-  const [lesson] = await l.json();
-  if (!lesson || !lesson.courses) return json(404, { error: "no_lesson" });
-
-  // 3. Cấp của học viên có đủ mở khóa này không
-  const m = await fetch(
-    `${SUPABASE_URL}/rest/v1/members?email=eq.${encodeURIComponent(email)}&select=level,expires_at`,
-    { headers: svc }
-  );
-  const [mem] = await m.json();
-  const expired = mem && mem.expires_at && new Date(mem.expires_at) < new Date();
-  if (!mem || expired || mem.level < lesson.courses.level) {
-    return json(403, { error: "not_enrolled" });
-  }
-  if (!lesson.bunny_video_id) return json(404, { error: "no_video" });
-  const video = { bunny_video_id: lesson.bunny_video_id };
-
-  const expires = Math.floor(Date.now() / 1000) + LINK_TTL_SEC;
-  const token = crypto
-    .createHash("sha256")
-    .update(BUNNY_TOKEN_KEY + video.bunny_video_id + expires)
-    .digest("hex");
-
-  const url =
-    `https://player.mediadelivery.net/embed/${BUNNY_LIBRARY_ID}/${video.bunny_video_id}` +
-    `?token=${token}&expires=${expires}&autoplay=false&preload=true&responsive=true`;
-
-  return json(200, { url });
 };
