@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#123A5F">
+<title>Bài học | Chị Hạnh Global</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="demo" class="demo-note" hidden>Đang ở chế độ xem thử với dữ liệu mẫu. Video thật sẽ hiện ở khung tối.</div>
+<header>
+  <div class="wrap bar">
+    <a class="brand" id="home" href="./"><span class="logo" aria-hidden="true">S</span><span><strong>CHỊ HẠNH GLOBAL</strong><small>Khu học viên</small></span></a>
+    <div class="who" id="who" hidden><span id="email"></span><button class="link" id="out">Đăng xuất</button></div>
+  </div>
+</header>
+
+<main class="wrap learn" id="app">
+  <div class="main">
+    <div class="crumb"><a id="back" href="./">← Khóa học của tôi</a></div>
+    <div class="player" id="player"><div class="ph">Đang tải bài học...</div></div>
+    <div class="resume" id="resume" hidden><span id="resume-t"></span><button class="link" id="restart">Xem lại từ đầu</button></div>
+    <h1 class="l-title" id="title"></h1>
+    <p class="l-sum" id="sum"></p>
+    <div class="nav2" id="nav2"></div>
+  </div>
+  <aside class="side" id="side"></aside>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/player.js@0.1.0/dist/player-0.1.0.min.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+<script>
+(async () => {
+  const $ = (id) => document.getElementById(id);
+  if (HOC.demo) $("demo").hidden = false;
+  $("home").href = $("back").href = HOC.link("./");
+
+  const user = await HOC.user();
+  if (!user) { location.replace(HOC.link("./")); return; }
+  $("who").hidden = false;
+  $("email").textContent = user.email;
+  $("out").onclick = HOC.signOut;
+
+  const slug = HOC.q("khoa") || "";
+  const [course, lessons] = await Promise.all([HOC.course(slug), HOC.lessons(slug)]);
+  if (!course || !lessons.length) {
+    $("player").innerHTML = `<div class="ph"><div><b>Bạn chưa được mở khóa học này</b>Kiểm tra lại Gmail đăng ký hoặc nhắn trợ lý.</div></div>`;
+    $("side").hidden = true;
+    return;
+  }
+
+  const pos = parseInt(HOC.q("bai"), 10) || lessons[0].position;
+  const idx = Math.max(0, lessons.findIndex((l) => l.position === pos));
+  const L = lessons[idx];
+  const prev = lessons[idx - 1], next = lessons[idx + 1];
+  const pr = await HOC.progress(lessons.map((l) => l.id));
+  const my = pr[L.id] || { position_sec: 0, completed: false };
+  const url = (p) => HOC.link(`bai.html?khoa=${encodeURIComponent(slug)}&bai=${p}`);
+
+  document.title = `${L.title} | ${course.title}`;
+  $("title").textContent = L.title;
+  $("sum").textContent = L.summary || "";
+
+  // ----- Danh sách bài -----
+  function renderSide() {
+    const done = lessons.filter((l) => pr[l.id] && pr[l.id].completed).length;
+    const pct = Math.round((done / lessons.length) * 100);
+    $("side").innerHTML = `<div class="side-h"><b>${HOC.esc(course.title)}</b>
+      <div class="meter"><i style="width:${pct}%"></i></div><small>Hoàn thành ${done}/${lessons.length} bài</small></div>
+      <ol class="lessons">${lessons.map((l) => {
+        const p = pr[l.id] || {};
+        const cls = [l.id === L.id ? "on" : "", p.completed ? "done" : ""].join(" ").trim();
+        const meta = p.completed ? "Đã học xong" : p.position_sec > 5 ? `Đang xem tới ${HOC.fmt(p.position_sec)}` : l.duration_min ? `${l.duration_min} phút` : "";
+        return `<li><a class="${cls}" href="${url(l.position)}"${l.id === L.id ? ' aria-current="page"' : ""}>
+          <span class="dot">${p.completed ? "✓" : l.position}</span>
+          <span><span class="t">${HOC.esc(l.title)}</span>${meta ? `<span class="m" style="display:block">${meta}</span>` : ""}</span></a></li>`;
+      }).join("")}</ol>`;
+  }
+
+  // ----- Nút điều hướng -----
+  function renderNav() {
+    const doneNow = pr[L.id] && pr[L.id].completed;
+    $("nav2").innerHTML =
+      (prev ? `<a class="btn o" href="${url(prev.position)}">← Bài trước</a>` : "") +
+      (doneNow ? "" : `<button class="btn o" id="mark">Đánh dấu đã học xong</button>`) +
+      (next ? `<a class="btn" href="${url(next.position)}">Bài tiếp theo →</a>` : "");
+    const m = $("mark");
+    if (m) m.onclick = () => markDone();
+  }
+
+  let lastSec = my.position_sec || 0;
+  async function markDone() {
+    pr[L.id] = { position_sec: lastSec, completed: true };
+    await HOC.saveProgress(L.id, lastSec, true);
+    renderSide(); renderNav();
+  }
+  renderSide(); renderNav();
+
+  // ----- Video -----
+  const resumeFrom = !my.completed && my.position_sec > 5 ? my.position_sec : 0;
+
+  if (HOC.demo) {
+    $("player").innerHTML = `<div class="ph"><div><b>Khung video bài giảng</b>Video Bunny thật sẽ phát ở đây, tự nhảy tới đúng chỗ học viên đã xem.</div></div>`;
+    if (resumeFrom) { $("resume-t").textContent = `Đang tiếp tục từ ${HOC.fmt(resumeFrom)}`; $("resume").hidden = false; }
+    $("restart").onclick = () => { $("resume").hidden = true; };
+    return;
+  }
+
+  const v = await HOC.videoUrl(L.id);
+  if (!v || v.error || !v.url) {
+    const msg = { no_video: "Bài này chưa có video.", not_enrolled: "Bạn chưa được mở khóa học này." }[v && v.error] || "Chưa tải được video. Tải lại trang giúp mình nhé.";
+    $("player").innerHTML = `<div class="ph"><div><b>${msg}</b></div></div>`;
+    return;
+  }
+
+  $("player").innerHTML = `<iframe src="${HOC.esc(v.url)}" loading="lazy" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen></iframe>`;
+  const player = new playerjs.Player($("player").querySelector("iframe"));
+
+  let lastSaved = lastSec, duration = 0, completed = !!my.completed;
+  const save = (force) => {
+    if (!force && Math.abs(lastSec - lastSaved) < 10) return;
+    lastSaved = lastSec;
+    const nowDone = !completed && duration && lastSec / duration >= 0.9;
+    if (nowDone) completed = true;
+    pr[L.id] = { position_sec: lastSec, completed };
+    HOC.saveProgress(L.id, lastSec, nowDone);
+    if (nowDone) { renderSide(); renderNav(); }
+  };
+
+  player.on("ready", () => {
+    player.getDuration((d) => { duration = d || 0; });
+    if (resumeFrom) {
+      player.setCurrentTime(resumeFrom);
+      $("resume-t").textContent = `Đang tiếp tục từ ${HOC.fmt(resumeFrom)}`;
+      $("resume").hidden = false;
+    }
+    player.on("timeupdate", (d) => {
+      lastSec = d.seconds || 0;
+      if (d.duration) duration = d.duration;
+      save(false);
+    });
+    player.on("pause", () => save(true));
+    player.on("ended", () => { lastSec = duration || lastSec; save(true); if (!completed) markDone(); });
+  });
+
+  $("restart").onclick = () => { player.setCurrentTime(0); lastSec = 0; save(true); $("resume").hidden = true; };
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") save(true); });
+  window.addEventListener("pagehide", () => save(true));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Không cho công cụ tìm kiếm lập chỉ mục khu học viên
+[[headers]]
+  for = "/hoc/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

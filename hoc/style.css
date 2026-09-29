@@ -1,0 +1,99 @@
+:root{
+  --bg:#ffffff;--soft:#f7f9fb;--ink:#111418;--text:#2b333b;--muted:#6a7682;
+  --navy:#123a5f;--red:#b4202d;--gold:#a87c22;--yellow:#f2c94c;--green:#1f7a4d;
+  --line:#e6eaef;--line2:#d5dce4;
+  --f:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{max-width:100%;overflow-x:hidden}
+body{margin:0;background:var(--soft);color:var(--text);font-family:var(--f);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ul,ol{margin:0}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+a:focus-visible,button:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.wrap{max-width:1160px;margin:0 auto;padding-inline:16px}
+
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.logo{flex:none;width:36px;height:36px;background:var(--red);clip-path:polygon(50% 0,61% 34%,98% 35%,68% 56%,79% 92%,50% 71%,21% 92%,32% 56%,2% 35%,39% 34%);display:grid;place-items:center;color:var(--yellow);font-weight:700;font-size:14px;padding-top:3px}
+.brand strong{display:block;font-size:11px;font-weight:400;letter-spacing:.1em;color:#17324d;line-height:1.2}
+.brand small{display:block;margin-top:4px;font-size:9px;font-weight:500;line-height:1.2;color:var(--gold)}
+.who{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);min-width:0}
+.who span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:40vw}
+.link{white-space:nowrap;background:none;border:0;padding:6px 0;color:var(--navy);font-weight:600;font-size:12px;text-decoration:underline;text-underline-offset:3px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 20px;border-radius:10px;border:0;background:var(--navy);color:#fff;text-decoration:none;font-weight:700;font-size:14px;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px -12px rgba(18,58,95,.7)}
+.btn.o{background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
+.btn.y{background:var(--yellow);color:var(--ink)}
+.btn[disabled]{opacity:.45;pointer-events:none}
+
+.demo-note{background:#fff8e1;border-bottom:1px solid #f0dfa6;font-size:12px;color:#6b5314;text-align:center;padding:8px 16px}
+
+/* Đăng nhập */
+.gate{min-height:calc(100vh - 57px);display:grid;place-items:center;padding:32px 16px}
+.gate-card{width:100%;max-width:420px;background:#fff;border:1px solid var(--line2);border-radius:16px;padding:28px 24px;box-shadow:0 18px 36px -22px rgba(18,58,95,.45);text-align:center}
+.gate-card h1{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+.gate-card p{margin-top:10px;color:var(--muted)}
+.gate-card .btn{width:100%;margin-top:22px}
+.gate-card .fine{margin-top:14px;font-size:12px}
+.g-ico{width:18px;height:18px;background:#fff;border-radius:50%;display:grid;place-items:center}
+
+/* Danh sách khóa */
+.page{padding-block:28px 48px}
+.page h1{font-size:22px;font-weight:800;color:var(--ink)}
+.page .lead{margin-top:6px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:20px}
+.course{position:relative;display:block;background:#fff;border:1px solid var(--line2);border-radius:16px;padding:22px 20px 20px;text-decoration:none;overflow:hidden;transition:transform .2s,box-shadow .2s;box-shadow:0 18px 36px -26px rgba(18,58,95,.45)}
+.course::before{content:"";position:absolute;inset:0 0 auto 0;height:5px;background:linear-gradient(90deg,#b4202d,#f2c94c,#b4202d)}
+.course:hover{transform:translateY(-4px)}
+.course h2{font-size:18px;font-weight:800;color:var(--red)}
+.course p{margin-top:6px;font-size:13px;color:var(--navy);font-weight:600}
+.meter{margin-top:16px;height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--green);border-radius:99px}
+.course .stat{margin-top:8px;font-size:12px;color:var(--muted)}
+.course .go{margin-top:16px;font-weight:700;color:var(--navy);font-size:13px}
+.empty{margin-top:20px;background:#fff;border:1px dashed var(--line2);border-radius:16px;padding:24px 20px;color:var(--muted)}
+.empty b{color:var(--ink)}
+.empty .btn{margin-top:14px}
+
+/* Trang học */
+.learn{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:20px;padding-block:20px 48px;align-items:start}
+.crumb{font-size:12px;color:var(--muted);margin-bottom:10px}
+.crumb a{color:var(--navy);text-decoration:none;font-weight:600}
+.player{position:relative;aspect-ratio:16/9;background:#0e1a26;border-radius:14px;overflow:hidden;box-shadow:0 22px 40px -26px rgba(18,58,95,.8)}
+.player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.player .ph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#cfd8e2;padding:20px;font-size:13px}
+.player .ph b{display:block;color:#fff;font-size:15px;margin-bottom:6px}
+.resume{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding:10px 14px;background:#fff;border:1px solid var(--line2);border-left:3px solid var(--yellow);border-radius:0 10px 10px 0;font-size:13px}
+.resume[hidden]{display:none}
+.l-title{margin-top:16px;font-size:20px;font-weight:800;color:var(--ink);line-height:1.25}
+.l-sum{margin-top:6px;color:var(--text)}
+.nav2{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.nav2 .btn{flex:1 1 auto;min-height:44px;font-size:13px}
+.side{position:sticky;top:72px;background:#fff;border:1px solid var(--line2);border-radius:14px;overflow:hidden}
+.side-h{padding:14px 16px;border-bottom:1px solid var(--line)}
+.side-h b{display:block;color:var(--red);font-size:14px;font-weight:800}
+.side-h small{display:block;margin-top:6px;font-size:12px;color:var(--muted)}
+.side-h .meter{margin-top:8px}
+.lessons{list-style:none;padding:6px;max-height:calc(100vh - 200px);overflow:auto}
+.lessons a{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:start;padding:10px;border-radius:10px;text-decoration:none}
+.lessons a:hover{background:var(--soft)}
+.lessons a.on{background:#edf4f8}
+.dot{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--line2);display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--muted);background:#fff}
+.done .dot{background:var(--green);border-color:var(--green);color:#fff}
+.on .dot{border-color:var(--navy);color:var(--navy)}
+.lessons .t{font-size:13px;font-weight:600;color:var(--ink);line-height:1.35}
+.lessons .m{margin-top:3px;font-size:11.5px;color:var(--muted)}
+
+@media (max-width:900px){
+  .learn{grid-template-columns:1fr;padding-top:0}
+  .learn .main{margin-inline:-16px}
+  .crumb{padding:10px 16px 0}
+  .player{border-radius:0;box-shadow:none}
+  .main>.resume,.main>.l-title,.main>.l-sum,.main>.nav2{margin-inline:16px}
+  .side{position:static}
+  .lessons{max-height:none}
+}
