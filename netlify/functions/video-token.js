@@ -63,7 +63,7 @@ exports.handler = async (event) => {
     .digest("hex");
 
   const url =
-    `https://iframe.mediadelivery.net/embed/${BUNNY_LIBRARY_ID}/${video.bunny_video_id}` +
+    `https://player.mediadelivery.net/embed/${BUNNY_LIBRARY_ID}/${video.bunny_video_id}` +
     `?token=${token}&expires=${expires}&autoplay=false&preload=true&responsive=true`;
 
   return json(200, { url });
