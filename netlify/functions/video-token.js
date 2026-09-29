@@ -22,7 +22,10 @@ exports.handler = async (event) => {
   const lessonId = parseInt((event.queryStringParameters || {}).lesson, 10);
   if (!userToken || !lessonId) return json(400, { error: "bad_request" });
 
-  const svc = { apikey: SUPABASE_SERVICE_ROLE_KEY, Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}` };
+  // Khóa kiểu mới (sb_secret_...) chỉ gửi qua apikey; khóa cũ dạng JWT gửi kèm Authorization
+  const svc = SUPABASE_SERVICE_ROLE_KEY.startsWith("sb_")
+    ? { apikey: SUPABASE_SERVICE_ROLE_KEY }
+    : { apikey: SUPABASE_SERVICE_ROLE_KEY, Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}` };
 
   // 1. Xác minh người đăng nhập
   const u = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
