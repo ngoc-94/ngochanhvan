@@ -78,7 +78,7 @@ function cleanTitle(t) {
 async function lessonsOf(collectionGuid) {
   const data = await bunny(`videos?page=1&itemsPerPage=200&collection=${collectionGuid}&orderBy=date`);
   const items = (data.items || [])
-    .filter((v) => v.status !== 5 && v.status !== 6) // bỏ video lỗi
+    .filter((v) => ![0, 1, 2, 5, 6].includes(v.status)) // ẩn video đang tải, đang xử lý hoặc lỗi
     .map((v) => ({ ...cleanTitle(v.title), id: v.guid, seconds: v.length || 0, uploaded: v.dateUploaded || "" }));
   items.sort((a, b) => {
     if (a.num != null && b.num != null && a.num !== b.num) return a.num - b.num;
