@@ -71,6 +71,9 @@ function cleanTitle(t) {
   let s = String(t || "").replace(/\.(mp4|mov|m4v|mkv|webm|avi)$/i, "").trim();
   const m = s.match(/^(\d+)\s*[.\-_:)]?\s*(.*)$/);
   if (m && m[2]) return { num: parseInt(m[1], 10), title: m[2].trim() };
+  // "Bài 3 - WS P3", "Buổi 2: ...", "Ngày 1 ..." => lấy số để xếp, giữ nguyên tên
+  const w = s.match(/^(?:bài|bai|buổi|buoi|ngày|ngay|phần|phan|tuần|tuan|module|lesson|part|day|week)\s*(\d+)/i);
+  if (w) return { num: parseInt(w[1], 10), title: s };
   return { num: null, title: s };
 }
 
