@@ -65,6 +65,7 @@
         headers: { Authorization: "Bearer " + data.session.access_token },
       });
       const j = await r.json().catch(() => ({}));
+      HOC.loadError = r.ok ? "" : (j.detail || j.error || ("HTTP " + r.status));
       HOC._cache = r.ok ? j.courses || [] : [];
       return HOC._cache;
     },

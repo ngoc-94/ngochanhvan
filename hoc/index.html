@@ -56,6 +56,12 @@
   document.getElementById("out").onclick = HOC.signOut;
 
   const courses = await HOC.myCourses();
+  if (!courses.length && HOC.loadError) {
+    app.innerHTML = `<div class="wrap page"><h1>Chưa tải được khóa học</h1>
+      <div class="empty"><b>Hệ thống đang gặp lỗi, không phải do tài khoản của bạn.</b>
+      <p>Mã lỗi: ${HOC.esc(HOC.loadError)}</p></div></div>`;
+    return;
+  }
   if (!courses.length) {
     app.innerHTML = `<div class="wrap page"><h1>Khóa học của bạn</h1>
       <div class="empty"><b>Email ${HOC.esc(user.email)} chưa được mở khóa học nào.</b>
