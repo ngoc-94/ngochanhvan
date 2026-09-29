@@ -122,6 +122,7 @@ ul.d li b{font-weight:600;color:var(--ink)}
 .bonus .br{color:var(--red);font-weight:700}
 .bd{margin-top:3px;font-size:12.5px;line-height:1.4;color:var(--muted)}
 .bd b{font-weight:600;color:var(--ink)}
+.logo-in{display:inline-grid;width:24px;height:24px;font-size:10px;padding-top:2px;margin-left:6px;vertical-align:middle}
 .person .r .md{display:inline;font-size:inherit;font-weight:800;color:var(--gold)}
 .special{border:1px solid var(--line2);border-radius:12px;padding:14px;background:rgba(255,255,255,.75)}
 .special .k{font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--gold);margin-bottom:4px}
@@ -144,11 +145,12 @@ ul.d li b{font-weight:600;color:var(--ink)}
 .book>img{width:92px;height:auto;flex:none;border-radius:3px;box-shadow:0 12px 22px -12px rgba(17,20,24,.55)}
 .pub{display:flex;align-items:center;gap:8px;margin-top:8px}
 .pnlogo{flex:none;width:26px;height:32px;background:url("hinh2_mat_truoc_sach.png") no-repeat -203.2px -553.8px / 443.2px auto}
-.pub span{font-size:12px;font-weight:600;color:var(--ink)}
+.pub span{font-size:12px;font-weight:600;color:var(--red)}
 .book,.coach{scroll-margin-top:120px}
 .item .t{font-size:17px;line-height:1.3;font-weight:800;color:var(--ink)}
 .item .s{margin-top:4px;font-size:13.5px;font-style:italic;color:var(--ink)}
 .item .m{margin-top:4px;font-size:12px;color:var(--muted)}
+.item .m-gold{color:var(--gold);font-weight:700}
 .item .btn{margin-top:12px}
 .coach{padding-left:28px;border-left:1px solid var(--line)}
 
@@ -156,7 +158,8 @@ ul.d li b{font-weight:600;color:var(--ink)}
 .tc{background:#f4f5f7;border:1px solid #eceef1;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;box-shadow:0 6px 18px -14px rgba(17,20,24,.35)}
 .tc .q{font-size:13.5px;line-height:1.35;font-weight:700;color:var(--ink)}
 .tc p{font-size:12.5px;line-height:1.42;color:var(--text)}
-.tc .x{font-weight:600;color:var(--ink)}
+.tc .x{font-weight:700;color:var(--ink)}
+.tc p,.expert p:not(.x){font-weight:400;font-style:italic}
 .tc figcaption{margin-top:auto;padding-top:8px;font-size:11.5px;color:var(--muted);font-style:italic}
 .tc figcaption b{display:block;font-size:12.5px;font-style:normal;font-weight:700;color:var(--red)}
 .expert{margin-top:14px;background:#f4f5f7;border:1px solid #eceef1;border-radius:16px;padding:20px 22px}
@@ -172,11 +175,11 @@ ul.d li b{font-weight:600;color:var(--ink)}
 .person{display:flex;gap:14px;align-items:flex-start}
 .ph{width:76px;height:76px;flex:none;border-radius:50%;object-fit:cover;border:2px solid var(--yellow);background:var(--soft)}
 .ph-bruno{background:url("Bruno-20260502-WA0000.jpg") no-repeat 51% 8% / auto 175%}
-.ph-hanh{background:url("CHAN%20DUNG%20CUOI%20CUNG.webp") no-repeat 50% 14% / 150% auto}
+.ph-hanh{background:url("CHAN%20DUNG%20CUOI%20CUNG.webp") no-repeat 50% 18% / 130% auto}
 .person>div>b{display:block;font-size:13px;font-weight:700;color:var(--navy)}
 .person li b{font-weight:700;color:var(--ink)}
 .person .r{font-size:11.5px;color:var(--gold);font-weight:600;margin-bottom:5px}
-.person ul.d li{font-size:12px;line-height:1.35;padding-left:13px}
+.person ul.d li{font-size:12px;line-height:1.35;padding-left:13px;font-weight:700;color:var(--ink)}
 .person ul.d{gap:3px}
 .person ul.d li::before{width:4px;height:4px;top:.6em}
 .cta2{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:520px;width:100%;margin:6px auto 0}
@@ -354,7 +357,7 @@ ul.d li b{font-weight:600;color:var(--ink)}
             <ul class="d">
               <li><b>AI Systems Thinking</b> · Dùng <b>AI</b> để xây hệ thống và mở rộng năng lực trong công việc hiện tại</li>
               <li><b>Executive Communication</b> · Tiếng Anh tạo ảnh hưởng với cấp trên và trong môi trường quốc tế</li>
-              <li><b>Strategic Visibility</b> · Được đúng người nhìn thấy mà không phải tự khoe</li>
+              <li><b>Strategic Visibility</b> · Để kết quả được đúng người nhìn thấy</li>
               <li><b>Internal Negotiation</b> · Đàm phán tăng lương và nâng vị thế bên trong tổ chức</li>
               <li><b>Strategic Exit</b> · Dịch chuyển ra thị trường khi ở lại không còn là lựa chọn có lợi</li>
             </ul></div>
@@ -378,7 +381,7 @@ ul.d li b{font-weight:600;color:var(--ink)}
           </div>
           <div>
             <p class="bonus"><span>*INCLUDED:</span> <b class="br">GLOBAL RED CARPET</b></p>
-            <p class="bd">Toàn bộ chương trình <b>Global Red Carpet</b> được bao gồm trong <b>STAR READ SYSTEM · Signature</span></h2></div>
+            <p class="bd">Toàn bộ chương trình <b>Global Red Carpet</b> được bao gồm trong <b>STAR READ SYSTEM · Signature</b><span class="logo logo-in" aria-hidden="true">S</span></p>
           </div>
         </div>
         <div class="foot">
@@ -406,7 +409,7 @@ ul.d li b{font-weight:600;color:var(--ink)}
     </div>
     <div class="coach item" id="coaching">
       <div class="t">Coaching 1:1 cùng Hạnh</div>
-      <div class="m">60 phút · 7.000.000đ</div>
+      <div class="m m-gold">60 phút · 7.000.000đ</div>
       <a class="btn o sm" href="#zalo" data-zalo>Xem lịch trống</a>
     </div>
   </div>
