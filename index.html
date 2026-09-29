@@ -64,7 +64,7 @@
         letter-spacing: 0.16em;
         text-transform: uppercase;
       }
-      .gold { color: var(--gold); font-weight: 600; }
+      .gold { color: var(--gold); font-weight: 700; }
 
       /* nút */
       .btn {
@@ -104,7 +104,7 @@
       }
       .navbtn:hover { border-color: var(--navy); }
 
-      /* đầu trang: giữ nguyên logo và chữ cạnh logo như bản gốc */
+      /* đầu trang */
       .header {
         position: sticky;
         top: 0;
@@ -143,21 +143,17 @@
         gap: 6px;
         padding: 8px 16px 9px;
         border-top: 1px solid var(--line);
+        overflow-x: auto;
         scrollbar-width: none;
       }
       .mobile::-webkit-scrollbar { display: none; }
       .mobile .navbtn { padding: 0 9px; font-size: 11.5px; }
-      .mobile { overflow-x: auto; }
-
       .mobile .navbtn:last-child { background: var(--navy); border-color: var(--navy); color: #fff; }
 
-      /* hero */
+      /* hero: chỉ còn chân dung, canh giữa */
       .hero { padding: 22px 0 0; }
-      .hero-grid { display: grid; gap: 20px; }
-      .intro .eyebrow { color: #e08a1e; font-size: 10px; }
-      .intro p { margin: 0 0 10px; color: #111418; font-size: 14px; line-height: 1.5; font-style: italic; }
-      .intro p.eyebrow { font-style: normal; }
-      .intro p b { color: #111418; font-weight: 700; }
+      .hero-grid { display: grid; justify-items: center; }
+      .hero .eyebrow { text-align: center; }
       .pub {
         display: flex;
         align-items: center;
@@ -167,7 +163,6 @@
       }
       .pnlogo { flex: none; width: 26px; height: 32px; background: url("hinh2_mat_truoc_sach.png") no-repeat -203.2px -553.8px / 443.2px auto; }
       .pub span { font-size: 12.5px; font-weight: 600; color: var(--ink); }
-      .hero .btn { margin-top: 16px; }
       .portrait { margin: 0 auto; width: 100%; max-width: 340px; background: #fff; }
       .flap { position: relative; aspect-ratio: 760 / 1470; overflow: hidden; border-radius: 6px; box-shadow: 0 18px 40px -26px rgba(14, 46, 76, 0.55); }
       .flap img { position: absolute; width: 115.53%; max-width: none; height: auto; left: -9.21%; top: -19.05%; }
@@ -186,8 +181,8 @@
       /* STAR READ SYSTEM */
       .star-read { padding: 30px 0 32px; }
       .founder { margin: 0 0 18px; max-width: 820px; color: var(--ink); font-size: 14px; line-height: 1.5; }
-      .founder b { color: var(--navy); font-weight: 700; }
-      .srs-title { margin: 0 0 10px; color: var(--navy); font-size: 15px; font-weight: 700; letter-spacing: 0.04em; }
+      .founder b { color: var(--gold); font-weight: 700; }
+      .srs-title { margin: 0 0 10px; color: var(--gold); font-size: 15px; font-weight: 700; letter-spacing: 0.04em; }
       .srs { display: grid; gap: 10px; }
       .srs article { padding: 14px 16px; background: var(--wash); border-left: 3px solid var(--gold2); }
       .srs h3 { margin: 0 0 6px; color: var(--red); font-size: 14px; font-weight: 700; line-height: 1.35; }
@@ -210,6 +205,18 @@
         text-transform: uppercase;
       }
       .press b { color: var(--gold); }
+      /* điện thoại: ép 1 dòng, cỡ chữ tự co theo bề ngang màn hình */
+      @media (max-width: 799px) {
+        .press {
+          white-space: nowrap;
+          overflow: hidden;
+          letter-spacing: 0.03em;
+          font-size: clamp(7px, calc((100vw - 32px) / 42), 13px);
+        }
+      }
+      .press .p-red { color: var(--red); }
+      .press .p-navy { color: var(--navy); }
+      .press .p-gold { color: #a87c22; }
       .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
       .metric { padding: 14px; border-radius: 12px; color: #fff; }
       .metric:nth-child(1) { background: #123a5f; }
@@ -228,8 +235,9 @@
       .proof-copy small { color: var(--gold); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
       .proof-copy b { display: block; margin-top: 4px; color: var(--navy); font-size: 15px; font-weight: 700; line-height: 1.3; }
       .proof-copy p { margin: 5px 0 0; color: var(--muted); font-size: 12.5px; line-height: 1.42; }
+      .proof-copy .hl { color: var(--ink); font-weight: 700; }
 
-      /* sách: theo gam màu bìa (trắng, navy, đỏ, vàng) */
+      /* sách */
       .book { background: #fff; }
       .book-grid { display: grid; gap: 14px; align-items: center; }
       .mockup { margin: 0; border-radius: 14px; overflow: hidden; box-shadow: 0 20px 40px -24px rgba(14, 46, 76, 0.55); }
@@ -253,7 +261,6 @@
       details[open] summary:after { content: "−"; }
       .review { padding: 6px 0 0; color: var(--body); font-size: 12.5px; line-height: 1.5; }
       .review p { margin: 0 0 8px; }
-      /* lời chứng: giống thẻ feedback trang khóa học */
       .tgrid { display: grid; gap: 12px; margin-top: 16px; }
       .tc { margin: 0; background: #f4f5f7; border: 1px solid #eceef1; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 6px 18px -14px rgba(17, 20, 24, 0.35); }
       .tc p { margin: 0; font-size: 12.5px; line-height: 1.42; color: #2b333b; }
@@ -262,7 +269,7 @@
       .tc figcaption a { color: #6a7682; text-underline-offset: 3px; }
       .tc .q { font-size: 13.5px; line-height: 1.35; font-weight: 700; color: #111418; }
 
-      /* STAR READ SYSTEM - chương trình */
+      /* chương trình */
       .offer { background: var(--navy); color: #fff; }
       .offer.section { padding: 30px 0; }
       .offer-cta { margin-top: 16px; }
@@ -270,7 +277,7 @@
       .offer .btn { background: #fff; color: var(--navy); border-color: #fff; }
       .offer .btn:hover { background: var(--gold2); border-color: var(--gold2); }
 
-      /* người tham vấn: 2 cột có ảnh */
+      /* người tham vấn */
       .adv-sec { padding: 28px 0 30px; background: #f4f7fa; }
       .adv { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: start; }
       .pcard { background: #fff; border: 1px solid #e6eaef; border-radius: 14px; overflow: hidden; box-shadow: 0 12px 28px -22px rgba(14, 46, 76, 0.5); }
@@ -289,7 +296,8 @@
       .pcard li::before { content: ""; position: absolute; left: 1px; top: 0.55em; width: 4px; height: 4px; border-radius: 50%; background: var(--navy); }
       .pcard li b { font-weight: 700; color: var(--ink); }
       .adv-cta { display: flex; justify-content: center; margin-top: 16px; }
-      /* dải ảnh chạy cuối trang */
+
+      /* dải ảnh chạy */
       .ribbon { position: relative; overflow: hidden; padding: 18px 0 20px; background: var(--navy); border-top: 1px solid rgba(255, 255, 255, 0.18); }
       .ribbon:after {
         content: "";
@@ -304,23 +312,17 @@
       .track img.cover-strip { object-position: 50% 44%; }
       @keyframes slide { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
 
-      footer { padding: 22px 0 84px; background: var(--deep); color: rgba(255, 255, 255, 0.66); font-size: 12px; line-height: 1.5; }
-      .links { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-bottom: 12px; }
-      .links a { text-decoration: none; color: #fff; }
-
-      .sticky {
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 55;
-        padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
-        background: rgba(14, 46, 76, 0.97);
-        transform: translateY(110%);
-        transition: 0.3s;
+      /* chân trang: khung gọn, ôm sát chữ */
+      footer {
+        padding: 14px 0 calc(14px + env(safe-area-inset-bottom));
+        background: var(--deep);
+        color: var(--gold2);
+        font-size: 12px;
+        line-height: 1.5;
       }
-      .sticky.show { transform: none; }
-      .sticky a { display: flex; align-items: center; justify-content: center; min-height: 44px; color: #fff; text-decoration: none; font-size: 13px; font-weight: 600; }
+      .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 16px; margin-bottom: 8px; }
+      .links a { text-decoration: none; color: #fff; }
+      .foot-line { color: var(--gold2); font-weight: 600; text-align: center; }
 
       .reveal { opacity: 0; transform: translateY(8px); transition: opacity 0.6s, transform 0.6s; }
       .reveal.in { opacity: 1; transform: none; }
@@ -340,15 +342,12 @@
         .brand strong { font-size: 12px; }
         .brand small { font-size: 10px; }
         .hero { padding: 48px 0 0; }
-        .hero-grid { grid-template-columns: 1.05fr 0.95fr; align-items: center; gap: 56px; }
-        .intro p { font-size: 15px; }
         .portrait { max-width: 360px; }
         .star-read { padding: 48px 0; }
         .founder { font-size: 15px; }
         .srs { grid-template-columns: 1fr 1fr; gap: 14px; }
         .srs article { padding: 18px 20px; }
-        .metrics { grid-template-columns: repeat(4, 1fr); }
-        .metrics { gap: 12px; }
+        .metrics { grid-template-columns: repeat(4, 1fr); gap: 12px; }
         .metric { padding: 20px; }
         .metric b { font-size: 2rem; }
         .proofs { grid-template-columns: repeat(2, 1fr); gap: 14px; }
@@ -366,8 +365,7 @@
         .track { gap: 16px; }
         .track figure { width: 250px; }
         .track img { height: 167px; }
-        .sticky { left: auto; right: 24px; bottom: 24px; width: 300px; padding: 0; }
-        footer { padding-bottom: 28px; }
+        footer { padding: 18px 0; }
       }
     </style>
   </head>
@@ -393,19 +391,10 @@
     </header>
 
     <main id="top">
-      <!-- 1. Giới thiệu -->
+      <!-- 1. Chân dung -->
       <section class="hero">
         <div class="shell hero-grid">
-          <div class="intro reveal">
-            <p class="eyebrow">Career Strategist · Book Author</p>
-            <p>
-              <b>Văn Thị Ngọc Hạnh</b>, còn gọi là <b>Chị Hạnh Global</b>, là chiến lược gia nghề nghiệp, người giải mã cơ chế hệ thống để người Việt được đọc đúng và định giá đúng trong môi trường quốc tế.
-            </p>
-            <p>
-              Chị có hơn 13 năm làm việc trong môi trường đa quốc gia. Sau khi trở thành nhân sự xuất sắc, chị là thành viên của <b>hội đồng tuyển dụng</b> cho các dự án thuộc hệ sinh thái <b>Big Tech</b>. Chính vị trí ở phía bên kia bàn tuyển dụng đã cho chị góc nhìn nội bộ để phát hiện những điểm khiến người Việt có năng lực bị định giá sai trong tổ chức.
-            </p>
-            <a class="btn" href="khoa-hoc.html">Tải tài liệu &amp; STAR READ&nbsp; →</a>
-          </div>
+          <p class="eyebrow reveal">Career Strategist · Book Author</p>
           <figure class="portrait reveal">
             <div class="flap"><img src="hinh1_tay_gap_ben_phai.png" alt="Tay gấp bìa trước sách: Văn Thị Ngọc Hạnh" width="878" height="2493" fetchpriority="high" decoding="async" /></div>
             <div class="pub">
@@ -451,7 +440,7 @@
       <!-- 3. Thành tích trong MNC -->
       <section class="section achieve" id="background">
         <div class="shell">
-          <p class="press reveal"><b>Public record</b> &nbsp;·&nbsp; NXB Phụ nữ Việt Nam &nbsp;·&nbsp; Kiến Thức Tài Chính &nbsp;·&nbsp; Amazon KDP</p>
+          <p class="press reveal"><b>Public record</b> &nbsp;·&nbsp; <span class="p-red">NXB Phụ nữ Việt Nam</span> &nbsp;·&nbsp; <span class="p-navy">Kiến Thức Tài Chính</span> &nbsp;·&nbsp; <span class="p-gold">Amazon KDP</span></p>
           <div class="metrics reveal">
             <div class="metric"><b>13 NĂM</b><span>Môi trường Global và hệ sinh thái Apple</span></div>
             <div class="metric"><b>6 NĂM</b><span>Top Performer liên tục</span></div>
@@ -462,11 +451,11 @@
           <div class="proofs">
             <article class="proof reveal">
               <img src="cheers-award.webp" alt="Cheers Award trao cho Văn Thị Ngọc Hạnh" loading="lazy" />
-              <div class="proof-copy"><small>System</small><b>Top Performer</b><p>Productivity &amp; Quality · 6 năm liên tục</p></div>
+              <div class="proof-copy"><small>System</small><b>Top Performer</b><p>6 năm liên tục trong hệ thống MNC</p></div>
             </article>
             <article class="proof reveal">
               <img src="1-2-trieu-luot-xem.webp" alt="Bài viết đạt 1,2 triệu lượt xem" loading="lazy" />
-              <div class="proof-copy"><small>Market</small><b>1,2 triệu lượt xem</b><p>161,6K tương tác · Kiến Thức Tài Chính phát triển thành video.</p></div>
+              <div class="proof-copy"><small>Market</small><b>1,2 triệu lượt xem</b><p><strong class="hl">Nghịch lý lương người mới cao hơn người cũ</strong> · Kiến Thức Tài Chính phát triển thành video.</p></div>
             </article>
           </div>
         </div>
@@ -566,30 +555,31 @@
           ><a href="https://www.tiktok.com/@chihanh.global">TikTok</a
           ><a href="https://www.youtube.com/@ChiHanh_Global">YouTube</a>
         </div>
-        <div>Chị Hạnh Global · Career Strategist · Book Author · Trợ lý: 0352 345 160</div>
+        <div class="foot-line">Trợ lý: 0352 345 160</div>
       </div>
     </footer>
 
-    <div class="sticky" aria-hidden="true">
-      <a href="khoa-hoc.html">Tải tài liệu &amp; STAR READ&nbsp; →</a>
-    </div>
-
     <script>
-      const s = document.querySelector(".sticky"),
-        h = document.querySelector(".hero"),
-        a = document.querySelector("#apply");
-      const u = () => {
-        const v = scrollY > h.offsetHeight * 0.72 && a.getBoundingClientRect().top > innerHeight * 0.7;
-        s.classList.toggle("show", v);
-        s.setAttribute("aria-hidden", String(!v));
-      };
-      addEventListener("scroll", u, { passive: true });
-      u();
       const io = new IntersectionObserver(
         (es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }),
         { threshold: 0.08 }
       );
       document.querySelectorAll(".reveal").forEach((e) => io.observe(e));
+      // co chữ dòng Public record cho vừa đúng 1 dòng trên điện thoại
+      const press = document.querySelector(".press");
+      const fitPress = () => {
+        if (!press) return;
+        press.style.fontSize = "";
+        if (innerWidth >= 800) return;
+        let size = parseFloat(getComputedStyle(press).fontSize);
+        while (press.scrollWidth > press.clientWidth && size > 7) {
+          size -= 0.25;
+          press.style.fontSize = size + "px";
+        }
+      };
+      addEventListener("resize", fitPress);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitPress);
+      fitPress();
       const track = document.getElementById("track");
       if (track && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
         track.innerHTML += track.innerHTML;
