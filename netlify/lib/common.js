@@ -67,14 +67,20 @@ async function collectionsByLevel() {
 }
 
 // "01 WS1.mp4" => { num: 1, title: "WS1" }
+// "Bài 3 - WS P3" => { num: 3, title: "Bài 3 - WS P3" }
 function cleanTitle(t) {
-  let s = String(t || "").replace(/\.(mp4|mov|m4v|mkv|webm|avi)$/i, "").trim();
+  let s = String(t || "")
+    .normalize("NFC")                                  // gộp dấu tiếng Việt về một kiểu
+    .replace(/[​-‍﻿ ]/g, " ")      // bỏ ký tự vô hình
+    .replace(/\.(mp4|mov|m4v|mkv|webm|avi)$/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  // Số đứng đầu tên: dùng để xếp rồi ẩn đi
   const m = s.match(/^(\d+)\s*[.\-_:)]?\s*(.*)$/);
   if (m && m[2]) return { num: parseInt(m[1], 10), title: m[2].trim() };
-  // "Bài 3 - WS P3", "Buổi 2: ...", "Ngày 1 ..." => lấy số để xếp, giữ nguyên tên
-  const w = s.match(/^(?:bài|bai|buổi|buoi|ngày|ngay|phần|phan|tuần|tuan|module|lesson|part|day|week)\s*(\d+)/i);
-  if (w) return { num: parseInt(w[1], 10), title: s };
-  return { num: null, title: s };
+  // Còn lại: lấy con số đầu tiên có trong tên để xếp, giữ nguyên tên
+  const any = s.match(/\d+/);
+  return { num: any ? parseInt(any[0], 10) : null, title: s };
 }
 
 // Danh sách bài của một thư mục, đã xếp thứ tự
